@@ -158,8 +158,7 @@ module.exports = function (grunt) {
     'karma'
   ]);
 
-  grunt.registerTask('dev', [
-    'clean:dist',
+  grunt.registerTask('build', [
     'useminPrepare',
     'concurrent:dist',
     'concat',
@@ -167,12 +166,16 @@ module.exports = function (grunt) {
     'ngmin',
     'cssmin',
     'uglify',
-    'usemin',
+    'usemin'
+  ]);
+
+  grunt.registerTask('dev', [
+    'build',
     'open',
     'watch'
   ]);
 
   grunt.registerTask('default', [
-    'dev'
+    'build'
   ]);
 };
