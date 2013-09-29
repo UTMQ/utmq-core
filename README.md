@@ -1,8 +1,10 @@
-UTMQ-Viewer
+utmq-core
 ====
 
-[![Build Status](https://travis-ci.org/UTMQ/UTMQ-Viewer.png)](https://travis-ci.org/UTMQ/UTMQ-Viewer)
-[![Dependency Status](https://david-dm.org/utmq/UTMQ-Viewer.png)](https://david-dm.org/utmq/UTMQ-Viewer)
+### UTMQ Assessment Tool
+
+[![Build Status](https://travis-ci.org/UTMQ/utmq-core.png)](https://travis-ci.org/UTMQ/utmq-core)
+[![Dependency Status](https://david-dm.org/utmq/utmq-core.png)](https://david-dm.org/utmq/utmq-core)
 
 ## Dev Setup
 
