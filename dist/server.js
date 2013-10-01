@@ -14,10 +14,11 @@ server.get('/echo/:name', function (req, res, next) {
 });
 
 server.get(/\/?.*/, restify.serveStatic({
-    directory: "./dist",
+    directory: "./client",
     default: "index.html"
 }));
 
-server.listen(9051, function () {
+var port = process.env.PORT || 5000;
+server.listen(port, function () {
     console.log('%s listening at %s', server.name, server.url);
 });

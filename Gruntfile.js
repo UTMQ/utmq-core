@@ -6,7 +6,7 @@ module.exports = function (grunt) {
   // configurable paths
   var appConfig = {
     app: 'app',
-    dist: 'dist'
+    dist: 'dist/client'
   };
 
   try {
@@ -40,7 +40,8 @@ module.exports = function (grunt) {
             '!<%= appConfig.dist %>/.git*'
           ]
         }]
-      }
+      },
+      deploy: [ 'deploy' ]
     },
     useminPrepare: {
         html: ['<%= appConfig.app %>/student.html', '<%= appConfig.app %>/authoring.html'],
@@ -118,6 +119,11 @@ module.exports = function (grunt) {
             'generated/*'
           ]
         }]
+      },
+      deploy: {
+        expand: true,
+        src: ['dist/**', 'package.json', 'Procfile'],
+        dest: 'deploy/'
       }
     },
     concurrent: {
@@ -143,20 +149,27 @@ module.exports = function (grunt) {
         }]
       }
     },
-    uglify: {
-      dist: {
-        files: {
-          '<%= appConfig.dist %>/scripts/scripts.js': [
-            '<%= appConfig.dist %>/scripts/scripts.js'
-          ]
-        }
+    shell: {
+      // TODO: update this when there is time
+      tempDeploy: {
+        options: {
+          stdout: true,
+          stderr: true
+        },
+        command: [
+          'cd deploy',
+          'git init',
+          'git add *',
+          'git commit -m "Deploy"',
+          'git push -f git@heroku.com:utmq.git'
+        ].join(' && ')
       }
     }
   });
 
-  grunt.registerTask('test', [
-    'karma'
-  ]);
+
+  grunt.registerTask('test', [ 'karma' ]);
+  grunt.registerTask('deploy', [ 'clean:deploy', 'build', 'copy:deploy', 'shell:tempDeploy' ]);
 
   grunt.registerTask('build', [
     'useminPrepare',
@@ -165,7 +178,6 @@ module.exports = function (grunt) {
     'copy:dist',
     'ngmin',
     'cssmin',
-    'uglify',
     'usemin'
   ]);
 
@@ -175,7 +187,5 @@ module.exports = function (grunt) {
     'watch'
   ]);
 
-  grunt.registerTask('default', [
-    'build'
-  ]);
+  grunt.registerTask('default', [ 'build' ]);
 };
