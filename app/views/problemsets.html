@@ -1,12 +1,17 @@
 <div class='well well-sm'>
 
-  <div class="row">
-    <h1 class="cold-md-6"> Problem Sets </h1>
-    <button type="button" class="btn btn-success col-md-6">New Problem Set</button>
+  <div>
+    <h1> Problem Sets </h1>
+    <button type="button" class="btn btn-success pull-right">New Problem Set</button>
   </div>
 
 
-  <input type="text" class="search" placeholder="Search Problem Sets">
+  <form class="form-search">
+    <div class="input-append">
+      <input type="text" class="span2 search-query" placeholder="Search Problem Sets">
+      <button type="submit" class="btn"><i class="icon-search"></i></button>
+     </div>
+  </form>
 
   <ul class="list-group">
     <li class="list-group-item" ng-repeat="ps in problemSets">
