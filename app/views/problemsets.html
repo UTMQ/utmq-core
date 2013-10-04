@@ -1,0 +1,35 @@
+<div class='well well-sm'>
+
+  <div class="row">
+    <h1 class="cold-md-6"> Problem Sets </h1>
+    <button type="button" class="btn btn-success col-md-6">New Problem Set</button>
+  </div>
+
+
+  <input type="text" class="search" placeholder="Search Problem Sets">
+
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="ps in problemSets">
+    {{ps.name}} <br>
+      Last modified on {{ps.date}}
+
+      <div class='btn-group pull-right'>
+        <button type='button' class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+          Action <span class="caret"></span>  
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li ng-repeat="ac in actions">
+            <a href="#"> {{ac.action}} </a>
+          </li>
+          <li> <a href="#">Publish</a></li>
+          <li> <a href="#">Clone</a></li>
+          <li> <a href="#">Download</a></li>
+          <li> <a href="#">Delete</a></li>
+        </ul>
+      </div>
+      <br>
+
+    </li>
+  </ul>
+
+</div>
