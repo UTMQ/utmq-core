@@ -14,17 +14,17 @@ module.exports = function (grunt) {
   } catch (e) {}
 
   grunt.initConfig({
-    appPort: '9051',
+    appPort: '5000',
     appConfig: appConfig,
     watch: {
+      scripts: {
+        files: ['<%= appConfig.app %>/scripts/**/*.js'],
+        tasks: [ 'build' ]
+      },
       styles: {
         files: ['<%= appConfig.app %>/styles/{,*/}*.css'],
         tasks: []
-      },
-        scripts: {
-            files: ['<%= appConfig.app %>/styles/{,*/}*.css'],
-            tasks: ['copy:styles']
-        }
+      }
     },
     open: {
       server: {
