@@ -6,7 +6,12 @@
   </div>
 
 
-  <input type="text" class="search" placeholder="Search Problem Sets">
+  <form class="form-search">
+    <div class="input-append">
+      <input type="text" class="span2 search-query" placeholder="Search Problem Sets">
+      <button type="submit" class="btn"><i class="icon-search"></i></button>
+     </div>
+  </form>
 
   <ul class="list-group">
     <li class="list-group-item" ng-repeat="ps in problemSets">
@@ -21,10 +26,6 @@
           <li ng-repeat="ac in actions">
             <a href="#"> {{ac.action}} </a>
           </li>
-          <li> <a href="#">Publish</a></li>
-          <li> <a href="#">Clone</a></li>
-          <li> <a href="#">Download</a></li>
-          <li> <a href="#">Delete</a></li>
         </ul>
       </div>
       <br>

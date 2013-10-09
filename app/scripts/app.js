@@ -17,6 +17,10 @@ angular.module('UTMQViewerApp', [])
         templateUrl: 'views/newproblemset.html',
         controller: 'NewProblemSetCtrl'
       })
+      .when('/problemset-editor', {
+        templateUrl: 'views/problemset-editor.html',
+        controller: 'ProblemSetCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
