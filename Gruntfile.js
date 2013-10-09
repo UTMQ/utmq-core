@@ -21,6 +21,10 @@ module.exports = function (grunt) {
         files: ['<%= appConfig.app %>/scripts/**/*.js'],
         tasks: [ 'build' ]
       },
+      all: {
+        files: ['<%= appConfig.app %>/views/**/*'],
+        tasks: [ 'build' ]
+      },
       styles: {
         files: ['<%= appConfig.app %>/styles/{,*/}*.css'],
         tasks: []
