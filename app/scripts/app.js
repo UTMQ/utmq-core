@@ -2,6 +2,8 @@
 
 angular.module('UTMQViewerApp', [])
   .config(function ($routeProvider) {
+
+    
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -10,6 +12,10 @@ angular.module('UTMQViewerApp', [])
       .when('/problemsets', {
         templateUrl: 'views/problemsets.html',
         controller: 'ProblemSetCtrl'
+      })
+      .when('/newproblemset', {
+        templateUrl: 'views/newproblemset.html',
+        controller: 'NewProblemSetCtrl'
       })
       .otherwise({
         redirectTo: '/'

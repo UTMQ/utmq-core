@@ -794,7 +794,7 @@
     }
   };
 
-  Pouch.DEBUG = false;
+  Pouch.DEBUG = true;
   Pouch.openReqList = {};
   Pouch.adapters = {};
   Pouch.plugins = {};

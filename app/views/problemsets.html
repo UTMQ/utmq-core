@@ -2,7 +2,7 @@
 
   <div class="row">
     <h1 class="cold-md-6"> Problem Sets </h1>
-    <button type="button" class="btn btn-success col-md-6">New Problem Set</button>
+    <a href="#/newproblemset" class="btn btn-success col-md-6">New Problem Set</a>
   </div>
 
 
@@ -10,7 +10,7 @@
 
   <ul class="list-group">
     <li class="list-group-item" ng-repeat="ps in problemSets">
-    {{ps.name}} <br>
+    {{ps.doc.name}} <br>
       Last modified on {{ps.date}}
 
       <div class='btn-group pull-right'>
