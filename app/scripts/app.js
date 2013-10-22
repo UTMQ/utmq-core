@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('UTMQViewerApp', [])
+angular.module('UTMQViewerApp', ['ui.bootstrap', '$strap.directives'])
   .config(function ($routeProvider) {
 
     
@@ -19,7 +19,7 @@ angular.module('UTMQViewerApp', [])
       })
       .when('/problemset-editor', {
         templateUrl: 'views/problemset-editor.html',
-        controller: 'ProblemSetCtrl'
+        controller: 'ProblemEditorCtrl'
       })
       .otherwise({
         redirectTo: '/'

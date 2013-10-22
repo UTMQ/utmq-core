@@ -28,6 +28,10 @@ module.exports = function (grunt) {
       styles: {
         files: ['<%= appConfig.app %>/styles/{,*/}*.css'],
         tasks: []
+      },
+      gruntfile: {
+        files: ['Gruntfile.js'],
+        tasks: ['build']
       }
     },
     open: {
@@ -96,7 +100,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= appConfig.app %>',
-          src: ['*.html', 'views/*.html'],
+          src: ['*.html', 'views/**/*.html'],
           dest: '<%= appConfig.dist %>'
         }]
       }
