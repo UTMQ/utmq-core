@@ -22,7 +22,7 @@ module.exports = function (grunt) {
         tasks: [ 'build' ]
       },
       all: {
-        files: ['<%= appConfig.app %>/views/**/*'],
+        files: ['<%= appConfig.app %>/**/*.html'],
         tasks: [ 'build' ]
       },
       styles: {
