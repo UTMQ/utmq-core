@@ -2,24 +2,23 @@
 
 angular.module('UTMQViewerApp', ['ui.bootstrap', '$strap.directives'])
   .config(function ($routeProvider) {
-
     
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/authoring/intro.html',
+        controller: 'AuthoringIntroCtrl'
       })
-      .when('/problemsets', {
-        templateUrl: 'views/problemsets.html',
-        controller: 'ProblemSetCtrl'
+      .when('/manage', {
+        templateUrl: 'views/authoring/problemset-list.html',
+        controller: 'AuthoringProblemSetListCtrl'
       })
-      .when('/newproblemset', {
-        templateUrl: 'views/newproblemset.html',
-        controller: 'NewProblemSetCtrl'
+      .when('/new', {
+        templateUrl: 'views/authoring/problemset-new.html',
+        controller: 'AuthoringProblemSetNewCtrl'
       })
-      .when('/problemset-editor', {
-        templateUrl: 'views/problemset-editor.html',
-        controller: 'ProblemEditorCtrl'
+      .when('/edit/:id', {
+        templateUrl: 'views/authoring/problemset-edit.html',
+        controller: 'AuthoringProblemSetEditCtrl'
       })
       .otherwise({
         redirectTo: '/'

@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    <title>UTMQ - Student</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="styles/bootstrap.css">
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+
 </head>
 <body ng-app="UTMQViewerApp">
 
@@ -24,10 +25,20 @@
 <script src="bower_components/json3/lib/json3.min.js"></script>
 <![endif]-->
 
-Student App
+<div ng-controller="NavCtrl">
+  <div ng-include src="'views/nav.html'"></div>
+</div>
+
+
 <!-- Add your site or application content here -->
 <div class="container" ng-view=""></div>
 
+<div ng-controller="FooterCtrl">
+  <div ng-include src="'views/footer.html'"></div>
+</div>
+
+
+<script src="https://login.persona.org/include.js"></script>
 <script src="bower_components/jquery/jquery.js"></script>
 <script src="bower_components/angular/angular.js"></script>
 
@@ -43,7 +54,11 @@ Student App
 
 <!-- build:js({.tmp,app}) scripts/student-scripts.js -->
 <script src="scripts/student-app.js"></script>
+<script src="scripts/services/persona.js"></script>
 <script src="scripts/controllers/main.js"></script>
+<script src="scripts/controllers/nav.js"></script>
+<script src="scripts/controllers/student/intro.js"></script>
+<script src="scripts/controllers/student/problemset-list.js"></script>
 <!-- endbuild -->
 </body>
 </html>

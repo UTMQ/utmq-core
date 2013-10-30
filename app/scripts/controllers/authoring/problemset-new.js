@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('UTMQViewerApp')
-  .controller('NewProblemSetCtrl', function($scope, pouchService) {
+  .controller('AuthoringProblemSetNewCtrl', function($scope, pouchService) {
     
     $scope.saveProblem = function() {
       console.log('saveProblem');

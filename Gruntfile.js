@@ -21,13 +21,13 @@ module.exports = function (grunt) {
         files: ['<%= appConfig.app %>/scripts/**/*.js'],
         tasks: [ 'build' ]
       },
-      all: {
-        files: ['<%= appConfig.app %>/**/*.html'],
+      html: {
+        files: ['<%= appConfig.app %>/*.html', '<%= appConfig.app %>/views/**/*.html'],
         tasks: [ 'build' ]
       },
       styles: {
-        files: ['<%= appConfig.app %>/styles/{,*/}*.css'],
-        tasks: []
+        files: ['<%= appConfig.app %>/styles/**/*.css'],
+        tasks: [ 'useminPrepare', 'cssmin', 'usemin:css' ]
       },
       gruntfile: {
         files: ['Gruntfile.js'],
@@ -175,7 +175,6 @@ module.exports = function (grunt) {
       }
     }
   });
-
 
   grunt.registerTask('test', [ 'karma' ]);
   grunt.registerTask('deploy', [ 'clean:deploy', 'build', 'copy:deploy', 'shell:tempDeploy' ]);

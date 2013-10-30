@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Controller: ProblemSetCtrl', function () {
+describe('Controller: StudentProblemSetListCtrl', function () {
 
   // load the controller's module
   beforeEach(function() {
@@ -9,16 +9,15 @@ describe('Controller: ProblemSetCtrl', function () {
 
   var fakePouchService = {
     query: function() {}
-  }
+  };
   var MainCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    MainCtrl = $controller('ProblemSetCtrl', {
-      $scope: scope,
-      pouchService: fakePouchService
+    MainCtrl = $controller('StudentProblemSetListCtrl', {
+      $scope: scope
 
     });
   }));

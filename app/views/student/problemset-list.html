@@ -1,26 +1,17 @@
 <div class='well'>
 
   <div class="row">
-    <h1 class="cold-md-6"> Problem Sets </h1>
-    <a href="#/newproblemset" class="btn btn-success col-md-6">New Problem Set</a>
+    <div class="cold-md-6"><h1>Problem Set List</h1></div>
   </div>
-
-
-  <form class="form-search">
-    <div class="input-append">
-      <input type="text" class="span2 search-query" placeholder="Search Problem Sets">
-      <button type="submit" class="btn"><i class="icon-search"></i></button>
-     </div>
-  </form>
 
   <ul class="list-group">
     <li class="list-group-item" ng-repeat="ps in problemSets">
-    {{ps.doc.name}} <br>
+      {{ps.doc.name}} <br>
       Last modified on {{ps.date}}
 
       <div class='btn-group pull-right'>
         <button type='button' class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-          Action <span class="caret"></span>  
+          Action <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu">
           <li ng-repeat="ac in actions">
@@ -32,5 +23,6 @@
 
     </li>
   </ul>
+
 
 </div>

@@ -6,11 +6,11 @@ angular.module('UTMQViewerApp', [])
     
     $routeProvider
       .when('/', {
-        templateUrl: 'views/problemsets.html',
-        controller: 'StudentListProblemsCtrl'
+        templateUrl: 'views/student/intro.html',
+        controller: 'StudentProblemSetListCtrl'
       })
       .when('/problem/:id', {
-        templateUrl: 'views/student-problemset.html',
+        templateUrl: 'views/student/problemset-view.html',
         controller: 'StudentViewProblemCtrl'
       })
       .otherwise({

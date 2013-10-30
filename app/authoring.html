@@ -6,13 +6,14 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    <title>UTMQ - Instructor</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
     <!-- build:css(app) styles/main.css -->
     <link rel="stylesheet" href="styles/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/angular-ui/build/angular-ui.css">
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
 </head>
@@ -30,6 +31,13 @@
 <!-- Add your site or application content here -->
 <div class="container" ng-view=""></div>
 
+
+<div ng-controller="FooterCtrl">
+  <div ng-include src="'views/footer.html'"></div>
+</div>
+
+
+<script src="https://login.persona.org/include.js"></script>
 <script src="bower_components/jquery/jquery.js"></script>
 <script src="bower_components/angular/angular.js"></script>
 <script src="vendor_components/pouchdb-nightly.js"></script>
@@ -61,8 +69,8 @@
 
 <!-- build:js({.tmp,app}) scripts/authoring-scripts.js -->
 <script src="scripts/authoring-app.js"></script>
-
 <script src="scripts/services/pouch.js"></script>
+<script src="scripts/services/persona.js"></script>
 <script src="scripts/services/form-service.js"></script>
 <script src="scripts/directives/form-directive.js"></script>
 <script src="scripts/directives/field-directive.js"></script>
@@ -72,8 +80,10 @@
 <script src="scripts/controllers/forms/header.js"></script>
 <script src="scripts/controllers/forms/main.js"></script>
 <script src="scripts/controllers/forms/view.js"></script>
-<script src="scripts/controllers/problemsets.js"></script>
-<script src="scripts/controllers/newproblemset.js"></script>
+<script src="scripts/controllers/authoring/intro.js"></script>
+<script src="scripts/controllers/authoring/problemset-list.js"></script>
+<script src="scripts/controllers/authoring/problemset-edit.js"></script>
+<script src="scripts/controllers/authoring/problemset-new.js"></script>
 
 <!-- endbuild -->
 </body>
