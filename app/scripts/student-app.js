@@ -7,7 +7,7 @@ angular.module('UTMQViewerApp', [])
     $routeProvider
       .when('/', {
         templateUrl: 'views/student/intro.html',
-        controller: 'StudentProblemSetListCtrl'
+        controller: 'StudentIntroCtrl'
       })
       .when('/problem/:id', {
         templateUrl: 'views/student/problemset-view.html',
