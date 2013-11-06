@@ -9,11 +9,11 @@ angular.module('UTMQViewerApp')
     // AngularJS will instantiate a singleton by calling "new" on this function
 
     return  {
-      save: function() {
+      save: function(set) {
         console.log('pouchService::save');
         var doc = {
           _id: 'problemSet' + new Date().getTime(),
-           name: 'ProblemSet::Name'
+           name: set.name 
         };
 
         db.put(doc, function(err, response) { 
