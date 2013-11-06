@@ -1,8 +1,12 @@
 var https = require('https'),
   verify = require('browserid-verify')();
+var setApi = require('./api/setApi');
 var restify = require('restify');
+
 var port = process.env.PORT || 5000;
-var audience = "http://localhost:" + port;
+// TODO: this might need utm custon variables.
+var hostname = process.env.HOST || "http://localhost";
+var audience = hostname + ":" + port;
 
 
 var server = restify.createServer({
@@ -17,6 +21,17 @@ server.get('/echo/:name', function (req, res, next) {
     res.send(req.params);
     return next();
 });
+
+
+/*  
+  Set API
+*/
+server.post('/sets', setApi.post);
+server.put('/sets', setApi.put);
+server.get('/sets', setApi.getAll);
+server.get('/sets/:id', setApi.get);
+server.del('/sets/:id', setApi.del);
+
 
 server.get(/\/?.*/, restify.serveStatic({
     directory: "./client",
