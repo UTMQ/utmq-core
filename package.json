@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "restify": "~2.6.0",
-    "nano": "~4.1.4",
+    "nano": "~4.2.1",
     "browserid-verify": "0.1.x"
   },
   "devDependencies": {
