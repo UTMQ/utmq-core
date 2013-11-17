@@ -21,7 +21,6 @@ exports.put = function(req, res, next){
 
 exports.get = function(req, res, next){
   console.log('GET');
-  console.log(req);
   utmq.list(function(err, body) {
     if (!err) {
       body.rows.forEach(function(doc) {
@@ -36,13 +35,18 @@ exports.get = function(req, res, next){
 
 exports.getAll = function(req, res, next){
   console.log('GET ALL');
-  console.log(req);
   utmq.list(function(err, body) {
     if (!err) {
-      body.rows.forEach(function(doc) {
-        res.send(body);
-        console.log(doc);
-      });
+      console.log(body.rows.length);
+      if (body.rows.length === 0) {
+        res.json([]);
+      } else {
+        body.rows.forEach(function(doc) {
+          res.send(body);
+          console.log(doc);
+        });
+      }
+
     } else {
       console.log(err);
     }

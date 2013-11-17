@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('UTMQViewerApp', [])
+angular.module('UTMQViewerApp', ['ngRoute'])
   .config(function ($routeProvider) {
 
     

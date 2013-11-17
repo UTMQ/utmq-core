@@ -15,8 +15,11 @@ module.exports = function(config) {
       'app/bower_components/angular-strap/dist/angular-strap.min.js',
       'app/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
+      'app/bower_components/angular-route/angular-route.js',
+      'app/bower_components/angular-resource/angular-resource.js',
+      'app/scripts/resources.js',
       'app/scripts/authoring-app.js',
-      'app/scripts/controllers/student/problemset-list.js',
+      'app/scripts/controllers/student/intro.js',
       //'app/scripts/**/*.js',
       //'test/mock/**/*.js',
       'test/spec/**/*.js'

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('UTMQViewerApp', ['ui.bootstrap', '$strap.directives'])
+angular.module('UTMQViewerApp', ['ngRoute', 'ui.bootstrap', '$strap.directives', 'problemServices'])
   .config(function ($routeProvider) {
     
     $routeProvider

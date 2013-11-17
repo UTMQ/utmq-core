@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('UTMQViewerApp')
-  .controller('AuthoringProblemSetListCtrl', ['$scope', 'Set', function($scope, Set) {
+  .controller('AuthoringProblemSetListCtrl', ['$scope', 'Problem', function($scope, Problem) {
     $scope.actions = [
       {action: 'Edit'},
       {action: 'Publish'},
@@ -10,7 +10,7 @@ angular.module('UTMQViewerApp')
       {action: 'Delete'}
     ];
 
-    $scope.sets = Set.query();
+    $scope.problems = Problem.query();
 
     /*// get problem sets from local pouchdb*/
     //pouchService.query(function(data) {
