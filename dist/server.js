@@ -34,7 +34,7 @@ server.del('/sets/:id', setApi.del);
 
 
 server.get(/\/?.*/, restify.serveStatic({
-    directory: "./client",
+    directory: "../app",
     default: "index.html"
 }));
 

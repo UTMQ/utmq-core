@@ -17,21 +17,20 @@ module.exports = function (grunt) {
     appPort: '5000',
     appConfig: appConfig,
     watch: {
+      options: {
+        livereload: true
+      },
       scripts: {
-        files: ['<%= appConfig.app %>/scripts/**/*.js'],
-        tasks: [ 'build' ]
+        files: ['<%= appConfig.app %>/scripts/**/*.js']
       },
       html: {
-        files: ['<%= appConfig.app %>/*.html', '<%= appConfig.app %>/views/**/*.html'],
-        tasks: [ 'build' ]
+        files: ['<%= appConfig.app %>/*.html', '<%= appConfig.app %>/views/**/*.html']
       },
       styles: {
-        files: ['<%= appConfig.app %>/styles/**/*.css'],
-        tasks: [ 'useminPrepare', 'cssmin', 'usemin:css' ]
+        files: ['<%= appConfig.app %>/styles/**/*.css']
       },
       gruntfile: {
-        files: ['Gruntfile.js'],
-        tasks: ['build']
+        files: ['Gruntfile.js']
       }
     },
     open: {
@@ -70,16 +69,6 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= appConfig.app %>/images',
           src: '{,*/}*.{png,jpg,jpeg}',
-          dest: '<%= appConfig.dist %>/images'
-        }]
-      }
-    },
-    svgmin: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '<%= appConfig.app %>/images',
-          src: '{,*/}*.svg',
           dest: '<%= appConfig.dist %>/images'
         }]
       }
@@ -138,7 +127,6 @@ module.exports = function (grunt) {
     concurrent: {
       dist: [
         'imagemin',
-        'svgmin',
         'htmlmin'
       ]
     },
@@ -190,7 +178,6 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('dev', [
-    'build',
     'open',
     'watch'
   ]);
