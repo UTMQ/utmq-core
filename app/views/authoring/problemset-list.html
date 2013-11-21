@@ -4,10 +4,13 @@
     <div class="cold-md-6"><h1>Problem Set List</h1></div>
   </div>
 
+    <p ng-show="noResults" class="alert alert-info">No Problem Sets found. <a class="btn btn-default" href="#/new">Create one</a></p>
+
+
   <ul class="list-group">
     <li class="list-group-item" ng-repeat="ps in problemSets">
-      {{ps.doc.name}} <br>
-      Last modified on {{ps.date}}
+      {{ps.key.name}} <br />
+      Created: {{ps.key.created_at}} | Updated: {{ps.key.updated_at}}
 
       <div class='btn-group pull-right'>
         <button type='button' class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -15,7 +18,7 @@
         </button>
         <ul class="dropdown-menu" role="menu">
           <li ng-repeat="ac in actions">
-            <a href="#/edit/1"> {{ac.action}} </a>
+            <a href="#/edit/{{ps.key.id}}"> {{ac.action}} </a>
           </li>
         </ul>
       </div>

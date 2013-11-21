@@ -10,13 +10,13 @@ angular.module('UTMQViewerApp')
       {action: 'Delete'}
     ];
 
-    $scope.problems = Problem.query();
+    var pQuery = Problem.query(function() {
+      if (pQuery.body && pQuery.body.rows.length > 0) {
+        console.log(pQuery.body);
+        $scope.problemSets = pQuery.body.rows;
+      } else {
+        $scope.noResults = true;
+      }
 
-    /*// get problem sets from local pouchdb*/
-    //pouchService.query(function(data) {
-      //console.log('Data: ');
-      //console.log(data.rows)
-      //$scope.problemSets = data.rows;
-      //$scope.$apply();
-    /*});*/
+    });
   }]);
