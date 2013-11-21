@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('UTMQViewerApp')
-  .controller('AuthoringProblemSetEditCtrl', function($scope, pouchService, FormService) {
+  .controller('AuthoringProblemSetEditCtrl', function($scope, FormService) {
 
 
     // preview form mode
