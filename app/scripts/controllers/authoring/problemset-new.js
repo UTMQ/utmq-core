@@ -1,13 +1,20 @@
 'use strict';
 
 angular.module('UTMQViewerApp')
-  .controller('AuthoringProblemSetNewCtrl', function($scope, pouchService) {
+  .controller('AuthoringProblemSetNewCtrl', ['$scope', 'Problem', '$location', function($scope, Problem, $location) {
     
-    $scope.set = {}
+    $scope.problem = {};
     $scope.saveProblem = function() {
-      console.log('saveProblem');
-      var set={name:$scope.set.name};
-      pouchService.save(set);
+      var newProblem = new Problem();
+      console.log($scope.problem.name);
+      newProblem.name = $scope.problem.name;
+      newProblem.$save(function(resp) {
+        if (resp.result.ok) {
+          $location.path( "/edit/" +  resp.result.id );
+        } else {
+          // TODO
+          alert('Database Error Occurred');
+        }
+      });
     }
-
-  });
+  }]);

@@ -4,19 +4,34 @@ var nano = require('nano')(server);
 nano.db.create('utmq-core', function(err, body) {
   if (!err) {
     console.log('Database created!');
+  } else {
+    console.log('Database exists!');
   }
 });
 var utmq = nano.use('utmq-core');
 
 exports.post = function(req, res, next){
   console.log('POST');
-  console.log(req);
+  utmq.insert(req.body, function(err, body) {
+    res.contentType = 'json';
+    if (!err) {
+      res.send({
+        result: body
+      });
+    } else {
+      res.send({
+        error: true,
+        result: err
+      });
+    }
+  });
 
 };
 
 exports.put = function(req, res, next){
   console.log('PUT');
   console.log(req);
+
 };
 
 exports.get = function(req, res, next){

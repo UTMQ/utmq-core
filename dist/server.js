@@ -1,6 +1,6 @@
 var https = require('https'),
   verify = require('browserid-verify')();
-var setApi = require('./api/setApi');
+var problemApi = require('./api/problemApi');
 var restify = require('restify');
 
 var port = process.env.PORT || 5000;
@@ -24,13 +24,13 @@ server.get('/echo/:name', function (req, res, next) {
 
 
 /*  
-  Set API
+  Problem API
 */
-server.post('/sets', setApi.post);
-server.put('/sets', setApi.put);
-server.get('/sets', setApi.getAll);
-server.get('/sets/:id', setApi.get);
-server.del('/sets/:id', setApi.del);
+server.post('/problems', problemApi.post);
+server.put('/problems', problemApi.put);
+server.get('/problems', problemApi.getAll);
+server.get('/problems/:id', problemApi.get);
+server.del('/problems/:id', problemApi.del);
 
 
 server.get(/\/?.*/, restify.serveStatic({
