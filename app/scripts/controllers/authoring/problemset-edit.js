@@ -35,10 +35,11 @@ angular.module('UTMQViewerApp')
 
       var newField = {
         "field_id" : $scope.addField.lastAddedID,
-        "field_title" : "New Question - " + ($scope.addField.lastAddedID),
+        "field_title" : "Question " + ($scope.addField.lastAddedID),
         "field_type" : $scope.addField.new,
         "field_value" : "",
-        "field_required" : true
+        "field_required" : true,
+        "field_hint" : "HINT"
       };
 
       // put newField into fields array

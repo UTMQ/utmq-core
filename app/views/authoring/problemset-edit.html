@@ -66,10 +66,12 @@
             <div class="span2">Question Title:</div>
             <div class="span4"><input type="text" ng-model="field.field_title" value="{{field.field_title}}"></div>
           </div>
+
           <div class="row">
-            <div class="span2">Question Default Value:</div>
-            <div class="span4"><input type="text" ng-model="field.field_value" value="{{field.field_value}}"></div>
+            <div class="span2">Question Hint:</div>
+            <div class="span4"><input type="text" ng-model="field.field_hint" value="{{field.field_hint}}"></div>
           </div>
+
           <div class="row" ng-show="showAddOptions(field)">
             <div class="span2">Question Options:</div>
             <div class="span6">
