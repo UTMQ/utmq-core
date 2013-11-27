@@ -9,39 +9,11 @@ angular.module('UTMQViewerApp')
         fields:[
             {
                 name : 'textfield',
-                value : 'Textfield'
-            },
-            {
-                name : 'email',
-                value : 'E-mail'
-            },
-            {
-                name : 'password',
-                value : 'Password'
+                value : 'Short Answer'
             },
             {
                 name : 'radio',
-                value : 'Radio Buttons'
-            },
-            {
-                name : 'dropdown',
-                value : 'Dropdown List'
-            },
-            {
-                name : 'date',
-                value : 'Date'
-            },
-            {
-                name : 'textarea',
-                value : 'Text Area'
-            },
-            {
-                name : 'checkbox',
-                value : 'Checkbox'
-            },
-            {
-                name : 'hidden',
-                value : 'Hidden'
+                value : 'Multiple Choice'
             }
         ],
         form:function (id) {
