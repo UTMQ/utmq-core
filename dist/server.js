@@ -1,16 +1,24 @@
 var https = require('https'),
-  verify = require('browserid-verify')();
-var problemApi = require('./api/problemApi');
-var restify = require('restify');
+// Persona Verifier
+verify = require('browserid-verify')();
 
-var port = process.env.PORT || 5000;
-// TODO: this might need utm custon variables.
+// Read app settings
+var config = require('yaml-config');
+var settings = config.readConfig('config.yaml');
+
+var restify = require('restify');
+// Problem Set API Config
+var problemApi = require('./api/problemApi');
+// Instructor API Config
+var InstructorApi = require('./api/instructorApi');
+
+var port = process.env.PORT || settings.appPort;
 var hostname = process.env.HOST || "http://localhost";
 var audience = hostname + ":" + port;
 
 
 var server = restify.createServer({
-    name: 'myapp',
+    name: 'UTMQ',
     version: '1.0.0'
 });
 server.use(restify.acceptParser(server.acceptable));

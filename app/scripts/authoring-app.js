@@ -12,6 +12,10 @@ angular.module('UTMQViewerApp', ['ngRoute', 'ui.bootstrap', '$strap.directives',
         templateUrl: 'views/authoring/problemset-list.html',
         controller: 'AuthoringProblemSetListCtrl'
       })
+      .when('/instructors', {
+        templateUrl: 'views/authoring/instructors.html',
+        controller: 'InstructorCtrl'
+      })
       .when('/new', {
         templateUrl: 'views/authoring/problemset-new.html',
         controller: 'AuthoringProblemSetNewCtrl'

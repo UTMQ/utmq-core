@@ -6,7 +6,7 @@ angular.module('UTMQViewerApp')
 
     // preview form mode
     $scope.previewMode = false;
-
+    
     // new form
     $scope.form = {};
     $scope.form.form_id = 1;

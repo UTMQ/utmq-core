@@ -6,24 +6,25 @@ utmq-core
 [![Build Status](https://travis-ci.org/UTMQ/utmq-core.png)](https://travis-ci.org/UTMQ/utmq-core)
 [![Dependency Status](https://david-dm.org/utmq/utmq-core.png)](https://david-dm.org/utmq/utmq-core)
 
-## Global Deps
+## Setup Instructions
+
+0. You need node.js in the app environment and a CouchDB server
+
+1. Get the node.js dependencies:
 
 ```
-npm install -g bower grunt-cli phantomjs
+npm install 
 ```
 
-## Dev Setup
+2. Edit `dist/config.EXAMPLE.yaml` to match your CouchDB server and configure your
+admin email
 
-Database:
+
+3. Start the server with
 
 ```
-Apache CouchDB 1.4.0 (LogLevel=info) is starting.
-Apache CouchDB has started. Time to relax.
-[info] [<0.32.0>] Apache CouchDB has started on http://127.0.0.1:5984/
-```
-npm install
-bower install
 npm start
 ```
 
+4. Navigate to your application port in a web browser. 
 
