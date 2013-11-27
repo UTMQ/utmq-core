@@ -88,7 +88,6 @@ angular.module('UTMQViewerApp')
       }
     }
 
-
     // preview form
     $scope.previewOn = function(){
       if($scope.form.form_fields == null || $scope.form.form_fields.length == 0) {
@@ -113,10 +112,7 @@ angular.module('UTMQViewerApp')
 
     // decides whether field options block will be shown (true for dropdown and radio fields)
     $scope.showAddOptions = function (field){
-      if(field.field_type == "radio" || field.field_type == "dropdown")
-        return true;
-      else
-        return false;
+      return field.field_type === "radio"
     }
 
     // deletes all the fields
