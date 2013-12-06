@@ -143,7 +143,7 @@ angular.module('UTMQViewerApp')
 
 
     $scope.saveSet = function (problem) {
-      problem.course = "CSC400";
+      problem.course = $scope.selectedCourse;
       console.log(problem);
       problem.$update().then(
         function (result) {
@@ -163,8 +163,6 @@ angular.module('UTMQViewerApp')
           console.log(error);
         }
       );
-
-
     }
 
   });

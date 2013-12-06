@@ -11,10 +11,11 @@
 
 
   <ul class="list-group">
-    <li class="list-group-item" ng-repeat="ps in items">
-      {{ps.key.name}} <br />
-      Created: {{ps.key.created_at}} | Updated: {{ps.key.updated_at}}
-
+    <li class="list-group-item" ng-repeat="ps in items" style="min-height: 80px;">
+      <div class='pull-left'>
+        <h4>{{ps.key.name}}</h4>
+        Created: {{ps.key.created_at}} | Updated: {{ps.key.updated_at}}
+      </div>
       <div class='btn-group pull-right'>
         <button type='button' class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
           Action <span class="caret"></span>
