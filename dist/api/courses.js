@@ -1,6 +1,7 @@
-var slug = require ('slug');
+var slug = require('slug');
 var sanitize = require('validator').sanitize;
 var xss = require('sanitizer');
+
 var setupViews = require('./views/courses');
 
 module.exports = function (nano) {
@@ -16,7 +17,7 @@ module.exports = function (nano) {
         name: name,
         created_at: new Date(),
         updated_at: new Date(),
-        slug: slug(name)
+        slug: slug(name).toLowerCase()
       };
       if (name.length > 0) {
         db.insert(doc, function (err, body) {
@@ -62,9 +63,11 @@ module.exports = function (nano) {
 
       db.view('courses', 'by_name', function (err, body) {
         if (!err && body && body.rows.length !== 0) {
-          res.send({ error: false, body: body});
+          res.send(200, { body: body });
+        } else if(!err) {
+          res.send(200, { error: err, body: { rows: [] }});
         } else {
-          res.send(500, { error: true, body: err});
+          res.send(500, { error: err, body: { rows: [] }});
         }
       });
     },

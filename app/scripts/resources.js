@@ -1,14 +1,24 @@
 angular.module('problemServices', ['ngResource'])
   .factory('Problem', ['$resource',
     function ($resource) {
-      return $resource('problems/:problemId', {}, {
-        query: {method: 'GET', params: {entryId: ''}},
-        get: {method: 'GET', params: {setId: '@problemId'}, isArray: true},
-        save: {method: 'POST'},
-        update: {method: 'PUT', params: {setId: '@problemId'}},
-        remove: {method: 'DELETE'}
-      });
+      return $resource('problems/:id',
+        {id: '@id'},
+        {
+          query: {
+            isArray: true,
+            method: 'GET',
+            params: {},
+            transformResponse: function (data) {
+              return angular.fromJson(data).body.rows
+            }
+          },
+          get: {method: 'GET', params: {setId: '@id'}},
+          save: {method: 'POST'},
+          update: {method: 'PUT', params: {setId: '@id'}},
+          delete: { method: 'DELETE', params: {} }
+        });
     }]);
+
 
 angular.module('courseServices', ['ngResource'])
   .factory('Course', ['$resource',
@@ -19,13 +29,15 @@ angular.module('courseServices', ['ngResource'])
           query: {
             isArray: true,
             method: 'GET',
-            params: {entryId: ''},
-            transformResponse: function (data) {return angular.fromJson(data).body.rows}
+            params: {},
+            transformResponse: function (data) {
+              return angular.fromJson(data).body.rows
+            }
           },
-          get: {method: 'GET', params: {setId: '@courseId'}, isArray: true},
+          get: {method: 'GET', params: {setId: '@id'}},
           save: {method: 'POST'},
-          update: {method: 'PUT', params: {setId: '@courseId'}},
-          delete: { method: 'DELETE', params: { } }
+          update: {method: 'PUT', params: {setId: '@id'}},
+          delete: { method: 'DELETE', params: {} }
         });
     }]);
 
@@ -33,11 +45,42 @@ angular.module('courseServices', ['ngResource'])
 angular.module('instructorServices', ['ngResource'])
   .factory('Instructor', ['$resource',
     function ($resource) {
-      return $resource('instructors/:instructorId', {}, {
-        query: {method: 'GET', params: {entryId: ''}},
-        get: {method: 'GET', params: {setId: '@instructorId'}, isArray: true},
-        save: {method: 'POST'},
-        update: {method: 'PUT', params: {setId: '@instructorId'}},
-        remove: {method: 'DELETE'}
-      });
+      return $resource('instructors/:id',
+        {id: '@id'},
+        {
+          query: {
+            isArray: true,
+            method: 'GET',
+            params: {},
+            transformResponse: function (data) {
+              return angular.fromJson(data).body.rows
+            }
+          },
+          get: {method: 'GET', params: {setId: '@id'}},
+          save: {method: 'POST'},
+          update: {method: 'PUT', params: {setId: '@id'}},
+          remove: {method: 'DELETE', params: {} }
+        });
+    }]);
+
+
+angular.module('submissionServices', ['ngResource'])
+  .factory('Submission', ['$resource',
+    function ($resource) {
+      return $resource('submissions/:id',
+        {id: '@id'},
+        {
+          query: {
+            isArray: true,
+            method: 'GET',
+            params: {},
+            transformResponse: function (data) {
+              return angular.fromJson(data).body.rows
+            }
+          },
+          get: {method: 'GET', params: {setId: '@id'}},
+          save: {method: 'POST'},
+          update: {method: 'PUT', params: {setId: '@id'}},
+          delete: { method: 'DELETE', params: {} }
+        });
     }]);

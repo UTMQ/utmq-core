@@ -1,16 +1,32 @@
 <div class='well'>
 
-  <div class="row">
-    <div class="cold-md-6"><h1>Manage Instructors</h1></div>
-    <div class="alert alert-info">
+  <div class='row'>
+    <div class='cold-md-6'><h1>Manage Instructors</h1></div>
+    <div class='alert alert-info'>
       <p>
-        <strong>Add an email of the instructor you would like to add.</strong>
+        <strong>Add an email of the instructor you would like to add.</strong><br/>
+        Instructors have access to all courses and problem sets.
       </p>
     </div>
   </div>
 
-  <div class="row">
-      Instructors....
+  <div class='row multiadd'>
+    <form id='course-form' class='form-inline' ng-submit='addItem()'>
+      <div class='form-group'>
+        <input type='email' class='form-control' required placeholder='Instructor email here...' ng-model='newInst' autofocus>
+        <button class='btn btn-success'>Add Instructor</button>
+      </div>
+    </form>
+
+    <hr/>
+    <section ng-show='items.length' ng-cloak>
+      <ul id='course-list' class='list-group'>
+        <li ng-repeat='item in items' class='list-group-item multiAdd-item'>
+          <span class='multiAdd-item-title'>{{item.key.name}}</span>
+          <button ng-really-message='Delete this instructor?' ng-really-click='removeItem(item)' class='btn pull-right btn-danger'>Delete Instructor</button>
+        </li>
+      </ul>
+    </section>
   </div>
 
 </div>

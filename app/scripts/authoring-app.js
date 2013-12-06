@@ -8,7 +8,8 @@ angular
       '$strap.directives',
       'problemServices',
       'courseServices',
-      'instructorServices'
+      'instructorServices',
+      'submissionServices'
     ])
   .config(function ($routeProvider) {
 
@@ -25,10 +26,17 @@ angular
         templateUrl: 'views/authoring/instructors.html',
         controller: 'AuthoringInstructorsCtrl'
       })
-
       .when('/courses', {
         templateUrl: 'views/authoring/courses.html',
         controller: 'AuthoringCoursesCtrl'
+      })
+      .when('/submissions', {
+        templateUrl: 'views/authoring/submissions.html',
+        controller: 'AuthoringSubmissionsCtrl'
+      })
+      .when('/submissions-by-course/:id', {
+        templateUrl: 'views/authoring/submissions-by-course.html',
+        controller: 'AuthoringSubmissionsByCourseCtrl'
       })
       .when('/new', {
         templateUrl: 'views/authoring/problemset-new.html',

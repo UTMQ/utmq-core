@@ -1,20 +1,30 @@
+var sanitize = require('validator').sanitize;
+var xss = require('sanitizer');
+
+var setupViews = require('./views/submissions');
+
 module.exports = function (nano) {
   var db = nano.use('utmq-core-submissions');
+
+  setupViews(db);
 
   return {
     post: function (req, res, next) {
       console.log('POST');
-      req.body.created_at = new Date();
-      req.body.updated_at = new Date();
-      db.insert(req.body, function (err, body) {
+      var name = sanitize(xss.sanitize(req.body.name)).trim();
+      var doc = {
+        name: name,
+        created_at: new Date()
+      };
+
+      db.insert(doc, function (err, body) {
         res.contentType = 'json';
         if (!err) {
           res.send({
             result: body
           });
         } else {
-          res.send({
-            error: true,
+          res.send(500,{
             result: err
           });
         }
@@ -24,6 +34,7 @@ module.exports = function (nano) {
     put: function (req, res, next) {
       console.log('PUT');
       console.log(req);
+
     },
     get: function (req, res, next) {
       console.log('GET');
@@ -43,18 +54,35 @@ module.exports = function (nano) {
       console.log('GET ALL');
       res.contentType = 'json';
 
-      db.view('problems', 'by_name', function (err, body) {
+      db.view('submissions', 'by_name', function (err, body) {
         if (!err && body && body.rows.length !== 0) {
-          res.send({ error: false, body: body});
+          res.send(200, { body: body });
+        } else if (!err) {
+          res.send(200, { body: { rows: [] }});
         } else {
-          res.send({ error: true, description: err});
+          res.send(500, { error: err,  body: { rows: [] }});
         }
       });
     },
 
     del: function (req, res, next) {
-      console.log('DEL');
-      console.log(req);
+      var id = req.params.id;
+      db.get(id, function (err, body) {
+        if (!err) {
+
+          db.destroy(body._id, body._rev, function (err) {
+            if (!err) {
+              res.send(200);
+            } else {
+              res.send(500);
+            }
+          });
+
+        } else {
+          res.send(500);
+        }
+
+      });
     }
   };
 

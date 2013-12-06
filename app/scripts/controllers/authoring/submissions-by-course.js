@@ -1,15 +1,17 @@
 'use strict';
 
 angular.module('UTMQViewerApp')
-  .controller('StudentProblemsCtrl', function($scope, Problem) {
+  .controller('AuthoringSubmissionsByCourseCtrl', function ($scope, Submission) {
 
-    Problem.query().$promise
+    Submission.query().$promise
       .then(
       function (result) {
         $scope.items = result;
       },
       function (error) {
         // TODO: error
-        alert(error);
+        console.log(error);
       });
+
+
   });

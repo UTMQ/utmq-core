@@ -1,9 +1,13 @@
 'use strict';
 
-angular.module('UTMQViewerApp', ['ngRoute'])
+angular.module('UTMQViewerApp', [
+    'ngRoute',
+    'problemServices',
+    'courseServices'
+  ])
   .config(function ($routeProvider) {
 
-    
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/student/intro.html',

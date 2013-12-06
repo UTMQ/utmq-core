@@ -1,11 +1,21 @@
-<div class="well">
+<div class='well'>
 
-  <div class="row">
-    <div class="cold-md-6"><h1>New Problem Set</h1></div>
+  <div class='row'>
+    <div class='cold-md-6'><h1>New Problem Set</h1></div>
   </div>
 
   <hr/>
-  <label for="new">Name:</label>
-  <input value='' id="new" required type='text' ng-model='problem.name'/>
-  <button ng-click="saveProblem()" class="btn btn-success">Save Problem Set</button>
+
+
+  <div class='row multiadd createset'>
+    <form id='course-form' class='form-inline' ng-submit='saveProblem()'>
+      <div class='form-group'>
+        <label for="newProblem">Name: </label>
+        <input value='' id="newProblem" class='form-control' required autofocus ng-model='problem.name'/>
+        <button class='btn btn-success'>Create Problem Set</button>
+      </div>
+    </form>
+  </div>
+
+
 </div>

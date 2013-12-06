@@ -50,9 +50,9 @@ module.exports = function (nano) {
 
       db.view('problems', 'by_name', function (err, body) {
         if (!err && body && body.rows.length !== 0) {
-          res.send({ error: false, body: body});
+          res.send(200, { body: body});
         } else {
-          res.send({ error: true, description: err});
+          res.send({ error: err, body: { rows: [] } });
         }
       });
     },
