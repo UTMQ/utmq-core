@@ -1,0 +1,34 @@
+<div class='well'>
+
+  <div class='row'>
+    <div class='cold-md-6'><h1>Manage Courses</h1></div>
+    <div class='alert alert-info'>
+      <p>
+        <strong>Add / remove courses that can be used in problem sets.</strong> <br/> (Example: CSC404 - Intro to
+        Software Testing)
+      </p>
+    </div>
+  </div>
+
+  <div class='row multiadd'>
+    <form id='course-form' class='form-inline' ng-submit='addCourse()'>
+      <div class='form-group'>
+        <input id='new-course' class='form-control' required placeholder='Course name here...' ng-model='newCourse'
+               autofocus>
+        <button class='btn btn-success'>Add Course</button>
+      </div>
+    </form>
+
+    <hr/>
+    <section ng-show='courseList.length' ng-cloak>
+      <ul id='course-list' class='list-group'>
+        <li ng-repeat='course in courseList' class='list-group-item multiAdd-item'>
+          <span class='multiAdd-item-title'>{{course.key.name}}</span>
+          <button ng-really-message="Delete this course?" ng-really-click="removeCourse(course)" class='btn pull-right btn-danger'>Delete Course</button>
+
+        </li>
+      </ul>
+    </section>
+  </div>
+
+</div>

@@ -8,6 +8,10 @@ h1, h2, h3, h4 {
   color: #335778;
 }
 
+.well h1, .well h2 {
+  margin-left: 17px;
+}
+
 .hero-unit {
     margin: 50px auto 0 auto;
     width: 300px;
@@ -19,6 +23,12 @@ h1, h2, h3, h4 {
     padding: 60px;
 }
 
+.navbar-header h1 {
+  width: 300px;
+  margin-top: 30px;
+  font-size: 25px;
+}
+
 .hero-unit h1 {
     font-size: 60px;
     line-height: 1;
@@ -27,11 +37,10 @@ h1, h2, h3, h4 {
 
 
 .intro-logo {
-  width: 350px;
+  width: 300px;
   border: 1px solid lightgray;
   padding: 5px;
   margin: 25px;
-  float: left;
 }
 
 .navbar-logo {
@@ -44,4 +53,35 @@ h1, h2, h3, h4 {
   background: none;
   border-radius: 0;
   border: none;
+}
+
+.welcome {
+  font-weight: bold;
+  font-size: 24px;
+  color: #335778;
+}
+
+.multiadd input {
+ width: 250px;
+}
+
+.index-page {
+  text-align: center;
+}
+
+.nav-short {
+  margin: 25px 25px 0 0;
+}
+
+.list-group button, .list-group a {
+   min-width: 250px;
+}
+
+.multiAdd-item {
+  min-height: 60px;
+}
+
+.multiAdd-item-title {
+  font-size: 24px;
+  font-weight: bold;
 }

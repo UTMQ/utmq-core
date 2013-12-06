@@ -1,6 +1,24 @@
 <nav class="navbar navbar-default" role="navigation">
   <!-- Brand and toggle get grouped for better mobile display -->
-  <div class="navbar-header">
+  <div class="navbar-header pull-left">
     <a class="navbar-brand" href="/"><img src='../images/utmq.png' alt='UTMQ' class='navbar-logo'/></a>
+    <h1 ng-show="modeAuthoring">UTMQ Instructor</h1>
+    <h1 ng-show="modeStudent">UTMQ Student</h1>
+  </div>
+
+  <div ng-show="modeAuthoring" class="nav-short btn-group pull-right" ng-cloak>
+    <a href="#/" class="btn btn-default"><strong>Instructor :</strong></a>
+    <a href="#/manage" class="btn btn-default">Problem Sets</a>
+    <a href="#/courses" class="btn btn-default">Courses</a>
+    <a href="#/instructors" class="btn btn-default">Instructors</a>
+    <a href="#/logout" class="btn btn-default">Logout</a>
+  </div>
+
+  <div ng-show="modeStudent" class="nav-short btn-group pull-right" ng-cloak>
+    <a href="#/" class="btn btn-default"><strong>Student : </strong></a>
+    <a href="#/problems" class="btn btn-default">Problem Sets</a>
+    <a href="#/submissions" class="btn btn-default">Submissions</a>
+    <a href="#/courses" class="btn btn-default">Courses</a>
+    <a href="#/logout" class="btn btn-default">Logout</a>
   </div>
 </nav>

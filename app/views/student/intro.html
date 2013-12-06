@@ -1,15 +1,24 @@
 <div class='well'>
 
   <div class="row">
-    <div class="cold-md-6"><h1>Problem Sets</h1></div>
+    <div class="cold-md-6"><h2>Welcome student!</h2></div>
     <div class="alert alert-info">
       <p>
-        To work on problem sets, either <strong>login with your course email address</strong> or <strong>upload a problem set</strong>.
+        To work on problem sets,  <strong>login with your university email address</strong>.
       </p>
     </div>
 
-    <button ng-click="login()" class="btn btn-lg btn-success col-md-3"><strong>Student Login</strong></button>
-    <div class="col-md-6"></div>
-    <a href="#/upload" class="btn btn-lg btn-info col-md-3">Upload a Problem Set</a>
+    <!-- <a href="#/upload" class="btn btn-lg btn-info col-md-3">Upload a Problem Set</a> -->
   </div>
+  <div class="row">
+    <ul class="list-group">
+      <li class="list-group-item"> <button ng-click="login()" class="btn btn-lg btn-success"><strong>Student Login</strong></button></li>
+      <li class="list-group-item"><a href="#/problems" class="btn btn-lg btn-info">Your Problem Sets</a></li>
+      <li class="list-group-item"><a href="#/courses" class="btn btn-lg btn-info">Your Courses</a></li>
+      <li class="list-group-item"><a href="#/results" class="btn btn-lg btn-info">Your Submissions</a></li>
+      <li class="list-group-item"> <button ng-click="logout()" class="btn btn-lg btn-success"><strong>Logout</strong></button></li>
+    </ul>
+  </div>
+
+
 </div>

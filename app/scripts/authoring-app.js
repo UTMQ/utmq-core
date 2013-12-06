@@ -1,8 +1,17 @@
 'use strict';
 
-angular.module('UTMQViewerApp', ['ngRoute', 'ui.bootstrap', '$strap.directives', 'problemServices'])
+angular
+  .module('UTMQViewerApp',
+    [
+      'ngRoute',
+      'ui.bootstrap',
+      '$strap.directives',
+      'problemServices',
+      'courseServices',
+      'instructorServices'
+    ])
   .config(function ($routeProvider) {
-    
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/authoring/intro.html',
@@ -14,7 +23,12 @@ angular.module('UTMQViewerApp', ['ngRoute', 'ui.bootstrap', '$strap.directives',
       })
       .when('/instructors', {
         templateUrl: 'views/authoring/instructors.html',
-        controller: 'InstructorCtrl'
+        controller: 'AuthoringInstructorsCtrl'
+      })
+
+      .when('/courses', {
+        templateUrl: 'views/authoring/courses.html',
+        controller: 'AuthoringCoursesCtrl'
       })
       .when('/new', {
         templateUrl: 'views/authoring/problemset-new.html',
