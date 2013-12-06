@@ -3,7 +3,8 @@
 angular.module('UTMQViewerApp', [
     'ngRoute',
     'problemServices',
-    'courseServices'
+    'courseServices',
+    'submissionServices'
   ])
   .config(function ($routeProvider) {
 

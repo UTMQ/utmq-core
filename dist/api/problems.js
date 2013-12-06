@@ -10,6 +10,7 @@ module.exports = function (nano) {
       console.log('POST');
       req.body.created_at = new Date();
       req.body.updated_at = new Date();
+      req.body.questions = [];
       db.insert(req.body, function (err, body) {
         res.contentType = 'json';
         if (!err) {
@@ -26,21 +27,24 @@ module.exports = function (nano) {
 
     },
     put: function (req, res, next) {
-      console.log('PUT');
-      console.log(req);
+      var update = req.body;
+
+      db.insert(update, update.id, function (err, body) {
+        console.log("updated");
+        res.send(200, {body: body, error: err});
+      });
 
     },
     get: function (req, res, next) {
       console.log('GET');
-      db.list(function (err, body) {
+      var id = req.params.id;
+      db.get(id, function (err, body) {
         if (!err) {
-          body.rows.forEach(function (doc) {
-            res.send(body);
-            console.log(doc);
-          });
+          res.send(200, body);
         } else {
-          console.log(err);
+          res.send(500);
         }
+
       });
     },
 

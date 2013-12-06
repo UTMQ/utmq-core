@@ -1,0 +1,17 @@
+<div class='well'>
+
+  <div class='row'>
+    <div class='cold-md-6'><h1>Submission: {{sub._id}}</h1></div>
+  </div>
+
+  <div ng-repeat="q in sub.questions">
+    <h5>{{q.field_title}}</h5>
+    <p>HINT: {{q.field_hint}}</p>
+    <p>Q: {{q.field_question}}</p>
+    <h3>A: {{q.field_answer}}</h3>
+
+
+    <hr/>
+  </div>
+
+</div>

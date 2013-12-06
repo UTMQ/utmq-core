@@ -10,13 +10,13 @@ angular.module('UTMQViewerApp')
       {action: 'Delete'}
     ];
 
-    var pQuery = Problem.query(function() {
-      if (pQuery.body && pQuery.body.rows.length > 0) {
-        console.log(pQuery.body);
-        $scope.problemSets = pQuery.body.rows;
-      } else {
-        $scope.noResults = true;
-      }
-
-    });
+    Problem.query().$promise
+      .then(
+      function (result) {
+        $scope.items = result;
+      },
+      function (error) {
+        // TODO: error
+        console.log(error);
+      });
   }]);

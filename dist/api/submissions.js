@@ -11,13 +11,9 @@ module.exports = function (nano) {
   return {
     post: function (req, res, next) {
       console.log('POST');
-      var name = sanitize(xss.sanitize(req.body.name)).trim();
-      var doc = {
-        name: name,
-        created_at: new Date()
-      };
 
-      db.insert(doc, function (err, body) {
+
+      db.insert(req.body, function (err, body) {
         res.contentType = 'json';
         if (!err) {
           res.send({
@@ -38,15 +34,14 @@ module.exports = function (nano) {
     },
     get: function (req, res, next) {
       console.log('GET');
-      db.list(function (err, body) {
+      var id = req.params.id;
+      db.get(id, function (err, body) {
         if (!err) {
-          body.rows.forEach(function (doc) {
-            res.send(body);
-            console.log(doc);
-          });
+          res.send(200, body);
         } else {
-          console.log(err);
+          res.send(500);
         }
+
       });
     },
 

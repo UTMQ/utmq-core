@@ -12,9 +12,9 @@ angular.module('problemServices', ['ngResource'])
               return angular.fromJson(data).body.rows
             }
           },
-          get: {method: 'GET', params: {setId: '@id'}},
+          get: {method: 'GET', params: {}},
           save: {method: 'POST'},
-          update: {method: 'PUT', params: {setId: '@id'}},
+          update: {method: 'PUT', params: {}},
           delete: { method: 'DELETE', params: {} }
         });
     }]);

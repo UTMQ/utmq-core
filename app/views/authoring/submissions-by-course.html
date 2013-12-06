@@ -12,8 +12,8 @@
     <section ng-show='items.length' ng-cloak>
       <ul id='course-list' class='list-group'>
         <li ng-repeat='item in items' class='list-group-item multiAdd-item'>
-          <span class='multiAdd-item-title'>{{item.key.name}}</span>
-          <a href="#/submissions-course/{{item.key.slug}}" class='btn pull-right btn-info'>View</a>
+          <span class='multiAdd-item-title'>{{item.id}}</span>
+          <a href="#/submission/{{item.id}}" class='btn pull-right btn-info'>View</a>
         </li>
       </ul>
     </section>
