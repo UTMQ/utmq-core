@@ -10,10 +10,13 @@
   </div>
 
   <div class="row">
-    <ul class="list-group">
-      <li class="list-group-item">
+    <ul class="list-group" ng-hide="email">
+      <li class="list-group-item" >
         <button ng-click="login()" class="btn btn-lg btn-success"><strong>Instructor Login</strong></button>
       </li>
+    </ul>
+
+    <ul class="list-group" ng-show="email">
       <li class="list-group-item">
         <a href="#/new" class="btn btn-lg btn-info"><strong>Create a Problem Set</strong></a>
         <a href="#/manage" class="btn btn-lg btn-info">Manage Problem Sets</a>

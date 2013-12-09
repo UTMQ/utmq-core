@@ -7,19 +7,21 @@
   </div>
 
   <div ng-show="modeAuthoring" class="nav-short btn-group pull-right" ng-cloak>
-    <a href="#/" class="btn btn-default"><strong>Instructor :</strong></a>
-    <a href="#/manage" class="btn btn-default">Problem Sets</a>
-    <a href="#/courses" class="btn btn-default">Courses</a>
-    <a href="#/submissions" class="btn btn-default">Submissions</a>
-    <a href="#/instructors" class="btn btn-default">Instructors</a>
-    <a href="/" class="btn btn-default">Logout</a>
+    <a ng-show="email" href="#/" class="btn btn-default"><strong>Instructor :</strong></a>
+    <a ng-show="email" href="#/manage" class="btn btn-default">Problem Sets</a>
+    <a ng-show="email" href="#/courses" class="btn btn-default">Courses</a>
+    <a ng-show="email" href="#/submissions" class="btn btn-default">Submissions</a>
+    <a ng-show="email" href="#/instructors" class="btn btn-default">Instructors</a>
+    <button ng-show="email" ng-click="logout()" class="btn btn-default">Logout</button>
+    <button ng-hide="email" ng-click="login()" class="btn btn-default">Login</button>
   </div>
 
   <div ng-show="modeStudent" class="nav-short btn-group pull-right" ng-cloak>
-    <a href="#/" class="btn btn-default"><strong>Student : </strong></a>
-    <a href="#/problems" class="btn btn-default">Problem Sets</a>
-    <a href="#/submissions" class="btn btn-default">Submissions</a>
-    <a href="#/courses" class="btn btn-default">Courses</a>
-    <a href="/" class="btn btn-default">Logout</a>
+    <a ng-show="email" href="#/" class="btn btn-default"><strong>Student : </strong></a>
+    <a ng-show="email" href="#/problems" class="btn btn-default">Problem Sets</a>
+    <a ng-show="email" href="#/submissions" class="btn btn-default">Submissions</a>
+    <a ng-show="email" href="#/courses" class="btn btn-default">Courses</a>
+    <button ng-show="email" ng-click="logout()" class="btn btn-default">Logout</button>
+    <button ng-hide="email" ng-click="login()" class="btn btn-default">Login</button>
   </div>
 </nav>

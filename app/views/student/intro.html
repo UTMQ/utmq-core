@@ -11,8 +11,11 @@
     <!-- <a href="#/upload" class="btn btn-lg btn-info col-md-3">Upload a Problem Set</a> -->
   </div>
   <div class="row">
-    <ul class="list-group">
+    <ul ng-hide="email" class="list-group">
       <li class="list-group-item"> <button ng-click="login()" class="btn btn-lg btn-success"><strong>Student Login</strong></button></li>
+    </ul>
+
+    <ul ng-show="email">
       <li class="list-group-item"><a href="#/problems" class="btn btn-lg btn-info">Your Problem Sets</a></li>
       <li class="list-group-item"><a href="#/courses" class="btn btn-lg btn-info">Your Courses</a></li>
       <li class="list-group-item"><a href="#/results" class="btn btn-lg btn-info">Your Submissions</a></li>

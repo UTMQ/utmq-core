@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('UTMQViewerApp')
-  .controller('AuthoringIntroCtrl', function($scope, personaService) {
+  .controller('AuthoringIntroCtrl', function($scope, persona) {
     $scope.login = function () {
-      navigator.id.request();
+      persona.login();
     };
   });

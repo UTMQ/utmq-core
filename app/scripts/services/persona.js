@@ -1,30 +1,74 @@
 'use strict';
 
 angular.module('UTMQViewerApp')
-  .service('personaService', function personaService($http, $q) {
+  .factory('persona', function ($rootScope, $http) {
+    var resetUser = function () {
+      localStorage.removeItem('personaEmail');
+      $rootScope.isAuthenticated = false;
+    };
 
-    navigator.id.watch({
-      loggedInUser: null,
-      onlogin: function (assertion) {
-        var deferred = $q.defer();
-        console.log('onlogin');
+    var login = function () {
+      navigator.id.get(function (assertion) {
+        if (!assertion) {
+          console.log('No assertion provided');
+          return;
+        }
 
-        $http.post("/auth", {assertion:assertion})
-          .then(function (response) {
-            if (response.data.status != "okay") {
-              deferred.reject(response.data.reason);
+        $http({
+          url: '/auth',
+          method: 'POST',
+          data: { assertion: assertion }
+        }).success(function (data) {
+
+            if (data.status === 'okay') {
+              $http({
+                url: '/login',
+                method: 'GET'
+              }).success(function (data) {
+
+                  localStorage.setItem('personaEmail', data.email);
+                  $rootScope.isAuthenticated = true;
+                  $rootScope.email = data.email;
+                }).error(function (data) {
+
+                  resetUser();
+                  console.log('Login failed');
+                });
             } else {
-              deferred.resolve(response.data.email);
+
+              resetUser();
+              console.log('Login failed');
             }
+          }).error(function (data) {
+
+            resetUser();
+            console.log('Login failed');
           });
-      },
-      onlogout: function () {
-        window.location = '/logout';
-      }
-    });
+      });
+    };
+
+    var logout = function () {
+      $http({
+        url: '/logout',
+        method: 'POST'
+      }).success(function (data) {
+
+          if (data.status === 'okay') {
+            $rootScope.isAuthenticated = false;
+            $rootScope.email = null;
+            resetUser();
+          } else {
+
+            console.log('Logout failed because ' + data.reason);
+          }
+        }).error(function (data) {
+
+          console.log('error logging out: ', data);
+        })
+    };
 
     return {
-
-    }
-
+      login: login,
+      logout: logout
+    };
   });
