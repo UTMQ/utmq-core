@@ -5,3 +5,4 @@ default:
   dbServer: 'http://127.0.0.1'  # CouchDB Database Server IP
   dbPort: 5984 # CouchDB Database Server Port
   secret: '0GBlJZ0E3Bt2Zbi2flRPkltczCewBxBC' # CHANGE THIS!
+  audience: 'localhost:5000'

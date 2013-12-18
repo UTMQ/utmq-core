@@ -15,7 +15,8 @@
     "slug": "~0.4.0",
     "sanitizer": "~0.1.1",
     "validator": "~2.0.0",
-    "client-sessions": "~0.4.1"
+    "client-sessions": "~0.4.1",
+    "gap-system": "git://github.com/vladikoff/node-gap-system#684c44072fd572"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
