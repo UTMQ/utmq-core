@@ -14,7 +14,7 @@ var problemsApi = require('./api/problems')(db);
 var instructorsApi = require('./api/instructors')(db);
 var coursesApi = require('./api/courses')(db);
 var submissionsApi = require('./api/submissions')(db);
-var calculateApi = require('./api/calculate')();
+var calculateApi = require('./api/calculate')(settings);
 var authApi = require('./api/auth')(settings);
 // var studentsApi = require('./api/students')(db);
 

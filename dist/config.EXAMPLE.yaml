@@ -6,3 +6,4 @@ default:
   dbPort: 5984 # CouchDB Database Server Port
   secret: '0GBlJZ0E3Bt2Zbi2flRPkltczCewBxBC' # CHANGE THIS!
   audience: 'localhost:5000'
+  gap_path: 'gap' # path to GAP (http://gap-system.org) in your server environment
