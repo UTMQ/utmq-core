@@ -3241,6 +3241,7 @@ $main(function(){
       var paletteEnabled;
       try {
         var parsed = new Parser().parse(this.textarea.value);
+        console.log(parsed);
         if (org.mathdox.formulaeditor.options.useBar) {
           if (this.palette) {
             paletteEnabled = true;

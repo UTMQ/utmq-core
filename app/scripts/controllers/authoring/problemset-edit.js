@@ -3,6 +3,10 @@
 angular.module('UTMQViewerApp')
   .controller('AuthoringProblemSetEditCtrl', function ($scope, $routeParams, FormService, Problem, Course, EditorService, CalculationService) {
 
+    $scope.init = function () {
+      EditorService.init();
+    };
+
     // todo remove
     $scope.sel = {};
     $scope.calcResult = [];
@@ -160,20 +164,27 @@ angular.module('UTMQViewerApp')
 
     $scope.saveSet = function (problem) {
       problem.course = $scope.selectedCourse;
-      console.log(problem);
+
+      console.log();
+
+      problem.questions.forEach(function(q, idx) {
+        q.field_formula = org.mathdox.formulaeditor.FormulaEditor.getEditorByTextArea("formula" + idx).getOpenMath();
+      });
+
       problem.$update().then(
         function (result) {
-          console.log(result);
+          location.reload();
+          /*
           Problem.get({id: $routeParams.id}).$promise
             .then(
             function (result) {
               $scope.problem = result;
-
             },
             function (error) {
               // TODO: error
               console.log(error);
             });
+            */
         },
         function (error) {
           console.log(error);
