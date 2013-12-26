@@ -48,7 +48,7 @@ angular.module('UTMQViewerApp')
     $scope.addField.lastAddedID = 0;
 
     // accordion settings
-    $scope.accordion = {}
+    $scope.accordion = {};
     $scope.accordion.oneAtATime = true;
 
     // create new field button click

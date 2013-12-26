@@ -89,3 +89,7 @@ h1, h2, h3, h4 {
 .createset label {
   margin-left: 20px;
 }
+
+.pe label {
+  display: block;
+}

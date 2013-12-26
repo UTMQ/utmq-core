@@ -1,22 +1,6 @@
-<div class='well '>
-
+<div class='well'>
   <h1> Problem Set Editor </h1>
-
   <h3> Editing: {{problem.name}}</h3>
-
-  <div class="form-group">
-    <label for="numquestions"> Number of questions </label>
-    <input type="text" class="form-control" id="numquestions" placeholder="0">
-  </div>
-  <div class="form-group">
-    <label for="enablehints">Enable Hints</label>
-    <input type="checkbox" class="form-control" id="enablehints" placeholder="0">
-  </div>
-
-</div>
-
-
-<div class="well">
 
   <div class="form-group">
     <label for="name" class="col-sm-2 control-label">Name</label>
@@ -38,7 +22,7 @@
 
 </div>
 
-<div class="well" ng-init="init()">
+<div class="well pe" ng-init="init()">
   <h3>Questions</h3>
 
   <div class="add-field">
@@ -52,29 +36,11 @@
     <div heading="{{field.field_title}}" ng-repeat="field in problem.questions">
 
       <div class="accordion-edit">
-        <button class="btn btn-danger pull-right" type="button" ng-click="deleteField(field.field_id)"><i
-            class="icon-trash icon-white"></i> Delete
-        </button>
-
-        <textarea id="formula{{$index}}" class='mathdoxformula  mathdoxvisibletextarea' rows='10' cols='80'>{{field.field_formula}}</textarea>
-
-        <div class="form-group">
-          <button class="btn btn-default btn-sm" ng-click="checkCalculation($index)">Check Calculation</button>
-          <label>Calculation Result:</label>
-          <textarea disabled>{{calcResult[$index]}}</textarea>
-        </div>
-        <div class="form-group">
-          <div class="span2">Question: {{field.field_id}} - {{field.field_type}}</div>
-        </div>
-
+        <button class="btn btn-danger pull-right" type="button" ng-click="deleteField(field.field_id)">Delete</button>
 
         <div class="form-group">
           <div class="span2">Question Title:</div>
           <div class="span4"><input type="text" ng-model="field.field_title" value="{{field.field_title}}"></div>
-          <input type="text" ng-model="field.field_answer" value="{{field.field_answer}}">
-        </div>
-
-        <div class="form-group">
           <div class="span2">Full Question:</div>
           <div class="span4">
             <textarea class="form-control" rows="3" ng-model="field.field_question"
@@ -82,10 +48,16 @@
           </div>
         </div>
 
-
         <div class="form-group">
-          <div class="span2">Question Hint:</div>
-          <div class="span4"><input type="text" ng-model="field.field_hint" value="{{field.field_hint}}"></div>
+          <label for="formula{{$index}}">Answer Formula:</label>
+          <textarea id="formula{{$index}}" class='mathdoxformula' rows='10' cols='80'>{{field.field_formula}}</textarea>
+          <button class="btn btn-default btn-sm" ng-click="checkCalculation($index)">Check Formula</button>
+          <label for="formula{{$index}}">Answer Variables:</label>
+          <button class="btn btn-default btn-sm" ng-click="addVar()">Add a variable</button>
+          <div>
+            <label ng-show="calcResult[$index]">Formula Result:</label>
+            <textarea disabled ng-show="calcResult[$index]">{{calcResult[$index]}}</textarea>
+          </div>
         </div>
 
         <div class="form-group" ng-show="showAddOptions(field)">
@@ -93,17 +65,16 @@
           <div class="span6">
             <div ng-repeat="option in field.field_options">
               <input type="text" ng-model="option.option_title" value="{{option.option_title}}">
-              <a class="btn btn-danger btn-mini right" type="button" ng-click="deleteOption(field, option)"><i
-                  class="icon-minus icon-white"></i></a>
+              <a class="btn btn-danger btn-mini right" type="button" ng-click="deleteOption(field, option)"></a>
               <span class="label label-inverse">Value: {{ option.option_value }}</span>
             </div>
-            <button class="btn btn-primary btn-small" type="button" ng-click="addOption(field)"><i
-                class="icon-plus icon-white"></i> Add Option
+            <button class="btn btn-primary btn-small" type="button" ng-click="addOption(field)">Add Option
             </button>
           </div>
         </div>
 
       </div>
+      <hr/>
     </div>
   </div>
 
@@ -134,7 +105,7 @@
 
   <p class="text-center">
     <button class="btn btn-primary btn-large right" type="button" ng-click="previewOff()"><i
-        class="icon-arrow-left icon-white"></i> Back to Create Mode
+      class="icon-arrow-left icon-white"></i> Back to Create Mode
     </button>
   </p>
 </div>
