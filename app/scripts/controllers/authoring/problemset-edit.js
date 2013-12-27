@@ -1,7 +1,16 @@
 'use strict';
 
 angular.module('UTMQViewerApp')
-  .controller('AuthoringProblemSetEditCtrl', function ($scope, $routeParams, FormService, Problem, Course, EditorService, CalculationService) {
+  .controller('AuthoringProblemSetEditCtrl', function (
+    $scope,
+    $routeParams,
+    FormService,
+    Problem,
+    Course,
+    EditorService,
+    persona) {
+
+    persona.protect();
 
     $scope.init = function () {
       EditorService.init();
@@ -16,40 +25,41 @@ angular.module('UTMQViewerApp')
       function (result) {
         $scope.problem = result;
 
+        $scope.addField.lastAddedID = result.questions.length;
+        if(!$scope.problem.status) {
+          $scope.problem.status = 'unpublished';
+        }
+
       },
       function (error) {
         // TODO: error
         console.log(error);
+      })
+      .then(function() {
+        Course.query().$promise
+          .then(
+          function (result) {
+            $scope.courses = result;
+            if(!$scope.problem.course) {
+              $scope.problem.course = $scope.courses[0].key.name;
+            }
+          },
+          function (error) {
+            // TODO: error
+            console.log(error);
+          });
+
       });
-
-    Course.query().$promise
-      .then(
-      function (result) {
-        $scope.courses = result;
-        console.log($scope.courses);
-      },
-      function (error) {
-        // TODO: error
-        console.log(error);
-      });
-
-    // preview form mode
-    $scope.previewMode = false;
-
-
-    // previewForm - for preview purposes, form will be copied into this
-    // otherwise, actual form might get manipulated in preview mode
-    $scope.previewForm = {};
 
     // add new field drop-down:
     $scope.addField = {};
     $scope.addField.types = FormService.fields;
     $scope.addField.new = $scope.addField.types[0].name;
-    $scope.addField.lastAddedID = 0;
 
     // accordion settings
     $scope.accordion = {};
     $scope.accordion.oneAtATime = true;
+
 
     // create new field button click
     $scope.addNewField = function () {
@@ -58,27 +68,43 @@ angular.module('UTMQViewerApp')
       $scope.addField.lastAddedID++;
 
       var newField = {
-        "field_id": $scope.addField.lastAddedID,
-        "field_title": "Question " + ($scope.addField.lastAddedID),
-        "field_type": $scope.addField.new,
-        "field_value": "",
-        "field_required": true,
-        "field_hint": "HINT"
+        field_id: $scope.addField.lastAddedID,
+        field_title: "Question " + $scope.addField.lastAddedID,
+        field_type: $scope.addField.new,
+        field_value: "",
+        field_required: true,
+        field_hint: 'HINT',
+        field_variables: []
       };
+
+      // add a result variable
+      var resultVar = {
+        name: 'result',
+        type: 'result'
+      };
+
+      newField.field_variables.push(resultVar);
 
       // put newField into fields array
       $scope.problem.questions.push(newField);
-    }
+
+      setInterval(function() {
+        if (org.mathdox.formulaeditor.FormulaEditor) {
+          org.mathdox.formulaeditor.FormulaEditor.updateByTextAreas()
+        }
+      }, 1000);
+    };
 
     // deletes particular field on button click
     $scope.deleteField = function (field_id) {
       for (var i = 0; i < $scope.problem.questions.length; i++) {
         if ($scope.problem.questions[i].field_id == field_id) {
           $scope.problem.questions.splice(i, 1);
+          $scope.addField.lastAddedID--;
           break;
         }
       }
-    }
+    };
 
     // add new option to the field
     $scope.addOption = function (field) {
@@ -101,7 +127,7 @@ angular.module('UTMQViewerApp')
 
       // put new option into field_options array
       field.field_options.push(newOption);
-    }
+    };
 
     // delete particular option
     $scope.deleteOption = function (field, option) {
@@ -111,31 +137,7 @@ angular.module('UTMQViewerApp')
           break;
         }
       }
-    }
-
-    // preview form
-    $scope.previewOn = function () {
-      if ($scope.problem.questions == null || $scope.problem.questions.length == 0) {
-        var title = 'Error';
-        var msg = 'No fields added yet, please add fields to the form before preview.';
-        var btns = [
-          {result: 'ok', label: 'OK', cssClass: 'btn-primary'}
-        ];
-
-        //$dialog.messageBox(title, msg, btns).open();
-      }
-      else {
-        $scope.previewMode = !$scope.previewMode;
-        $scope.problem.submitted = false;
-        angular.copy($scope.problem, $scope.previewForm);
-      }
-    }
-
-    // hide preview form, go back to create mode
-    $scope.previewOff = function () {
-      $scope.previewMode = !$scope.previewMode;
-      $scope.problem.submitted = false;
-    }
+    };
 
     // decides whether field options block will be shown (true for dropdown and radio fields)
     $scope.showAddOptions = function (field) {
@@ -144,28 +146,12 @@ angular.module('UTMQViewerApp')
 
     // deletes all the fields
     $scope.reset = function () {
-      $scope.problem.questions.splice(0, $scope.problem.questions.length);
-      $scope.addField.lastAddedID = 0;
+      location.reload();
     };
 
-    $scope.checkCalculation = function (editor) {
-      CalculationService
-        .calculate(editor)
-        .then(
-        function (res) {
-          $scope['calcResult'][editor] = res.body;
-        },
-        function (res) {
-          $scope['calcResult'][editor] = res.body;
-        }
-      );
-    };
 
 
     $scope.saveSet = function (problem) {
-      problem.course = $scope.selectedCourse;
-
-      console.log();
 
       problem.questions.forEach(function(q, idx) {
         q.field_formula = org.mathdox.formulaeditor.FormulaEditor.getEditorByTextArea("formula" + idx).getOpenMath();

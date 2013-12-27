@@ -9,11 +9,11 @@ angular.module('UTMQViewerApp')
         fields:[
             {
                 name : 'textfield',
-                value : 'Short Answer'
+                value : 'Numeric Answer'
             },
             {
                 name : 'radio',
-                value : 'Multiple Choice'
+                value : 'Multiple Choice Answer'
             }
         ],
         form:function (id) {

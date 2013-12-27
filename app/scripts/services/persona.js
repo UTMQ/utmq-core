@@ -5,6 +5,7 @@ angular.module('UTMQViewerApp')
     var resetUser = function () {
       localStorage.removeItem('personaEmail');
       $rootScope.isAuthenticated = false;
+      $rootScope.email = false;
     };
 
     var login = function () {
@@ -67,8 +68,15 @@ angular.module('UTMQViewerApp')
         })
     };
 
+    var protect = function () {
+      if (!$rootScope.isAuthenticated) {
+        window.location = '/';
+      }
+    };
+
     return {
       login: login,
-      logout: logout
+      logout: logout,
+      protect: protect
     };
   });

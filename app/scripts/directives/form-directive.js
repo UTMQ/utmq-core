@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('UTMQViewerApp')
   .directive('formDirective', function () {
     return {

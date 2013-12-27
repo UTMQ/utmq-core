@@ -93,3 +93,12 @@ h1, h2, h3, h4 {
 .pe label {
   display: block;
 }
+
+.panel-title > a {
+  display: block;
+  cursor: pointer;
+}
+
+.pe h1, .pe h2, .pe h3 {
+  margin-left: 0;
+}

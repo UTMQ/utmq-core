@@ -60,6 +60,7 @@ server.del('/courses/:id', coursesApi.del);
   Calculate API
  */
 server.post('/calculate', calculateApi.post);
+server.post('/calculateForQuestion', calculateApi.calculateForQuestion);
 
 /*
  Instructors API

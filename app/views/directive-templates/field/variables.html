@@ -1,0 +1,74 @@
+<div>
+  <button type="button" class="btn btn-default btn-sm" ng-click="checkCalculation($index, field)">Check Formula</button>
+
+  <label>Configure Formula Variables:</label>
+
+  <div class="alert alert-info">NOTE: Use <strong>"q1variable"</strong> inside of the formula. Use
+    <strong>"@q1variable"</strong> inside of the question text. Only Numbers or Letters allowed.
+  </div>
+
+  <table class="table">
+    <thead>
+    <th>Variable Name</th>
+    <th>Type</th>
+    <th>Variable Configuration</th>
+    <th>Actions</th>
+    </thead>
+
+    <tr ng-repeat="v in field.field_variables">
+      <td ng-switch on="v.type">
+
+        <div ng-switch-when="result">
+          @q{{field.field_id}}{{v.name}}
+        </div>
+        <div ng-switch-default>
+          @q{{field.field_id}}
+          <input type="text" ng-model="v.name" required/>
+        </div>
+      </td>
+      <td ng-switch on="v.type">
+
+        <div ng-switch-when="result">
+          {{v.type}}
+        </div>
+
+        <div ng-switch-default>
+          <select name="select" ng-model="v.type">
+            <option value="int" selected>Integer</option>
+            <option value="float">Float</option>
+          </select>
+        </div>
+
+      </td>
+
+      <td ng-switch on="v.type">
+
+        <div ng-switch-when="result">
+          Use this variable to structure other question formulas
+        </div>
+
+        <div ng-switch-default>
+          Range
+          <label>From: <input type="text" ng-model="v.from" required/></label>
+          <label>To: <input type="text" ng-model="v.to" required/></label>
+        </div>
+      </td>
+
+      <td ng-switch on="v.type">
+
+        <div ng-switch-when="result"></div>
+
+        <div ng-switch-default>
+          <button class="btn btn-default btn-sm" ng-click="removeVar(field, $index)">Remove</button>
+        </div>
+
+      </td>
+    </tr>
+  </table>
+  <button class="btn btn-default btn-sm" ng-click="addVar(field)">Add a variable</button>
+
+  <div>
+    <label ng-show="calcResult[$index]">Formula Result based on given variable configuration:</label>
+    <textarea disabled ng-show="calcResult[$index]">{{calcResult[$index]}}</textarea>
+  </div>
+</div>

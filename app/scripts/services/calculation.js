@@ -1,12 +1,17 @@
 angular.module('UTMQViewerApp')
   .service('CalculationService', function CalculationService($http, $q) {
 
-    var calculate = function (editor, variables) {
+    /**
+     * Calculates a result from an OpenMath object
+     * @param xmlStruct, String, xml structure to calculate
+     * @returns {promise|*}
+     */
+    var calculate = function (xmlStruct) {
       var deferred = $q.defer();
 
       var send = {
         // OpenMath structure
-        om: $("#formula" + editor).val(),
+        om: xmlStruct,
         variables: []
       };
 
@@ -24,7 +29,32 @@ angular.module('UTMQViewerApp')
     };
 
 
+    /**
+     * Calculates a result from an OpenMath object
+     * @param problem, Object, problem structure with all variables and OpenMath objects
+     * @returns {promise|*}
+     */
+    var calculateForQuestion = function (problem, questionId) {
+      var deferred = $q.defer();
+      var send = {
+        problem: problem,
+        questionId: questionId
+      };
+
+      $http
+        .post('/calculateForQuestion', send)
+        .success(function (data, status) {
+          deferred.resolve(data);
+        }).error(function (data, status) {
+          deferred.reject(data);
+        });
+
+      return deferred.promise;
+    };
+
+
     return {
-      calculate: calculate
+      calculate: calculate,
+      calculateForQuestion: calculateForQuestion
     };
   });
