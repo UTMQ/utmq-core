@@ -45,17 +45,6 @@ module.exports = function (dbConn) {
 
       });
     },
-
-    getAll: function (req, res, next) {
-      db.view('problems', 'by_name', function (err, body) {
-        if (!err && body && body.rows.length !== 0) {
-          res.send(200, { body: body});
-        } else {
-          res.send({ error: err, body: { rows: [] } });
-        }
-      });
-    },
-
     del: function (req, res, next) {
       console.log(req);
     }

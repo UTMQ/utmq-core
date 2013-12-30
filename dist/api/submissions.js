@@ -1,6 +1,3 @@
-var sanitize = require('validator').sanitize;
-var xss = require('sanitizer');
-
 var setupViews = require('./views/submissions');
 
 module.exports = function (dbConn) {
@@ -10,31 +7,27 @@ module.exports = function (dbConn) {
 
   return {
     post: function (req, res, next) {
-      console.log('POST');
+      var sub = req.body;
+      sub.created_at = new Date();
+      sub.author = req.session.email;
+      // TODO: check if existing for this problem id
+        // set redo, don't set marks.
 
-
-      db.insert(req.body, function (err, body) {
-        res.contentType = 'json';
+      db.save(sub, function (err, body) {
         if (!err) {
-          res.send({
-            result: body
-          });
+          res.send({ result: body });
         } else {
-          res.send(500,{
-            result: err
-          });
+          res.send(500, { result: err });
         }
       });
 
     },
     put: function (req, res, next) {
-      console.log('PUT');
-      console.log(req);
-
+      res.send(500, 'NO METHOD TO UPDATE');
     },
     get: function (req, res, next) {
-      console.log('GET');
       var id = req.params.id;
+
       db.get(id, function (err, body) {
         if (!err) {
           res.send(200, body);
@@ -44,40 +37,37 @@ module.exports = function (dbConn) {
 
       });
     },
-
     getAll: function (req, res, next) {
-      console.log('GET ALL');
-      res.contentType = 'json';
 
-      db.view('submissions', 'by_name', function (err, body) {
-        if (!err && body && body.rows.length !== 0) {
-          res.send(200, { body: body });
-        } else if (!err) {
-          res.send(200, { body: { rows: [] }});
-        } else {
-          res.send(500, { error: err,  body: { rows: [] }});
-        }
-      });
-    },
+      // query by problem
+      if (req.params && req.params.problem) {
 
-    del: function (req, res, next) {
-      var id = req.params.id;
-      db.get(id, function (err, body) {
-        if (!err) {
+        db.view('submissions/byProblem', {key: req.params.problem}, function (err, body) {
+          if (!err && body && body.length !== 0) {
+            res.send(200, { body: { rows: body } });
+          } else if (!err) {
+            res.send(200, { body: { rows: [] }});
+          } else {
+            res.send(500, { error: err, body: { rows: [] }});
+          }
+        });
 
-          db.destroy(body._id, body._rev, function (err) {
-            if (!err) {
-              res.send(200);
-            } else {
-              res.send(500);
-            }
-          });
+      }
+      // else query by session email
+      else {
 
-        } else {
-          res.send(500);
-        }
+        var opts = { key: req.session.email };
 
-      });
+        db.view('submissions/byAuthor', opts, function (err, body) {
+          if (!err && body && body.length !== 0) {
+            res.send(200, { body: { rows: body } });
+          } else if (!err) {
+            res.send(200, { body: { rows: [] }});
+          } else {
+            res.send(500, { error: err, body: { rows: [] }});
+          }
+        });
+      }
     }
   };
 

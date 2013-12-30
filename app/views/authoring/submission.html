@@ -1,8 +1,13 @@
 <div class='well'>
 
-  <div class='row'>
-    <div class='cold-md-6'><h1>Submission: {{sub._id}}</h1></div>
-  </div>
+  <h1>Student Submission</h1>
+
+  <table class="table">
+    <tr><th>ID:</th><td>{{sub._id}}</td></tr>
+    <tr><th>Problem Set:</th><td>{{sub.problem_name}}</td></tr>
+    <tr><th>Author</th><td>{{sub.author}}</td></tr>
+    <tr><th>Created At</th><td>{{sub.created_at}}</td></tr>
+  </table>
 
   <div ng-repeat="q in sub.questions">
     <h5>{{q.field_title}}</h5>

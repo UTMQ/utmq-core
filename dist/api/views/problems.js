@@ -17,6 +17,17 @@ module.exports = function (db) {
             })
           }
         }
+      },
+      byCourseAndPublished: {
+        map: function (doc) {
+          if (doc.course && doc.status === 'published') {
+            emit({
+              name: doc.name,
+              created_at: doc.created_at,
+              due: doc.due
+            })
+          }
+        }
       }
     }
   });

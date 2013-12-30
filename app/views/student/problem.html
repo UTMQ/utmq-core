@@ -1,28 +1,29 @@
-<div class='well'>
+<form ng-submit="submitAnswers()">
 
-  <h1> Problem Set </h1>
-
-  <h3> {{problem.name}}</h3>
-  <h5> Created on: {{problem.created_at}}</h5>
-
-
-</div>
-<div class='well'>
-
-  <h2> Questions </h2>
-
-  <div ng-repeat="q in problem.questions">
-    <h5>{{q.field_title}}</h5>
-    <p>HINT: {{q.field_hint}}</p>
-    <p>Q: {{q.field_question}}</p>
-
-    <div class="form-group">
-      <div class="span2">Your Answer:</div>
-      <input class="form-field" ng-model="q.field_answer" />
-    </div>
-
-    <hr/>
+  <div class='well'>
+    <h1> Problem Set </h1>
+    <h3> {{problem.name}}</h3>
+    <h5> Created on: {{problem.created_at}}</h5>
   </div>
-  <button class="btn btn-success btn-lg" type="button" ng-click="submitProblem(problem)">Submit</button>
-  {{ problem | json  }}
-</div>
+  <div class='well'>
+
+    <h2>Questions</h2>
+
+    <div ng-repeat="q in problem.questions">
+      <h5>{{q.field_title}}</h5>
+
+      <p>HINT: {{q.field_hint}}</p>
+
+      <p>Q: {{q.field_question}}</p>
+
+      <div class="form-group">
+        <div class="span2">Your Answer:</div>
+        <input class="form-field" ng-model="q.field_answer"/>
+      </div>
+
+      <hr/>
+    </div>
+    <button class="btn btn-success btn-lg" type="submit">Submit</button>
+    {{ problem | json }}
+  </div>
+</form>

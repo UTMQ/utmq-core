@@ -1,0 +1,17 @@
+<div class='well'>
+  <h1>Your Problem Set Submissions</h1>
+
+  <div ng-show="items.length === 0" class="alert alert-info">
+    No submissions found.
+  </div>
+
+
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="item in items" style="min-height: 80px;">
+      <h4>{{item.value.problem_name}} <a href='#/submission/{{item.id}}' class='btn pull-right btn-info'>View</a></h4>
+      <ul>
+        <li>Submitted on: {{item.value.created_at}}</li>
+      </ul>
+    </li>
+  </ul>
+</div>

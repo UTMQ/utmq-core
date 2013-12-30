@@ -52,10 +52,8 @@ server.use(clientSessions({
  */
 server.post('/problems', problemsApi.post);
 server.put('/problems', problemsApi.put);
-server.get('/problems', problemsApi.getAll);
 server.get('/problems/:id', problemsApi.get);
 server.del('/problems/:id', problemsApi.del);
-
 
 /*
  Courses API
@@ -86,7 +84,6 @@ server.post('/submissions', submissionsApi.post);
 server.put('/submissions', submissionsApi.put);
 server.get('/submissions', submissionsApi.getAll);
 server.get('/submissions/:id', submissionsApi.get);
-server.del('/submissions/:id', submissionsApi.del);
 
 server.get('/login', function (req, res, next) {
   res.send({ email: req.session.email, role: (req.session.role) ? req.session.role : 'student' });

@@ -12,8 +12,10 @@
       <div class='pull-left'>
         <h4>{{ps.key.name}}</h4>
         Created: {{ps.key.created_at}} | Updated: {{ps.key.updated_at}}
+        Status: {{ps.value.status}}
       </div>
-      <div class='btn-group pull-right'>
+      <div class='btn-group '>
+
         <button type='button' class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
           Action <span class="caret"></span>
         </button>
@@ -22,6 +24,9 @@
             <a href="#/edit/{{ps.id}}"> {{ac.action}} </a>
           </li>
         </ul>
+
+        <a href="#/submissions/{{ps.id}}" class='btn btn-info'>Submissions</a>
+
       </div>
       <br>
 

@@ -1,7 +1,5 @@
-'use strict';
-
 angular.module('UTMQViewerApp')
-  .controller('AuthoringSubmissionsByCourseCtrl', function ($scope, Submission) {
+  .controller('StudentSubmissionsCtrl', function($scope, Submission) {
 
     Submission.query().$promise
       .then(
@@ -12,6 +10,4 @@ angular.module('UTMQViewerApp')
         // TODO: error
         console.log(error);
       });
-
-
   });

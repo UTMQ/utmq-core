@@ -23,6 +23,14 @@ angular.module('UTMQViewerApp', [
         templateUrl: 'views/student/problem.html',
         controller: 'StudentProblemCtrl'
       })
+      .when('/submissions', {
+        templateUrl: 'views/student/submissions.html',
+        controller: 'StudentSubmissionsCtrl'
+      })
+      .when('/submission/:id', {
+        templateUrl: 'views/student/submission.html',
+        controller: 'StudentSubmissionCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

@@ -56,9 +56,7 @@ angular.module('instructorServices', ['ngResource'])
               return angular.fromJson(data).body.rows
             }
           },
-          get: {method: 'GET', params: {setId: '@id'}},
           save: {method: 'POST'},
-          update: {method: 'PUT', params: {setId: '@id'}},
           remove: {method: 'DELETE', params: {} }
         });
     }]);

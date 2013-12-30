@@ -34,17 +34,13 @@ angular
         templateUrl: 'views/authoring/courses.html',
         controller: 'AuthoringCoursesCtrl'
       })
-      .when('/submissions', {
+      .when('/submissions/:problemId', {
         templateUrl: 'views/authoring/submissions.html',
         controller: 'AuthoringSubmissionsCtrl'
       })
       .when('/submission/:id', {
         templateUrl: 'views/authoring/submission.html',
         controller: 'AuthoringSubmissionCtrl'
-      })
-      .when('/submissions-by-course/:id', {
-        templateUrl: 'views/authoring/submissions-by-course.html',
-        controller: 'AuthoringSubmissionsByCourseCtrl'
       })
       .when('/new', {
         templateUrl: 'views/authoring/problem-new.html',
