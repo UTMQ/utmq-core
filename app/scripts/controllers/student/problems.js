@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('UTMQViewerApp')
-  .controller('StudentProblemsCtrl', function($scope, Problem) {
+  .controller('StudentProblemsCtrl', function($scope, Course) {
 
-    Problem.query().$promise
+    Course.query().$promise
       .then(
       function (result) {
         $scope.items = result;

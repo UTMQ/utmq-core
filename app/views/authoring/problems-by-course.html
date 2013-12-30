@@ -8,7 +8,7 @@
   </div>
 
   <ul class="list-group">
-    <li class="list-group-item" ng-repeat="ps in items" style="min-height: 80px;">
+    <li class="list-group-item" ng-repeat="ps in details.problems" style="min-height: 80px;">
       <div class='pull-left'>
         <h4>{{ps.key.name}}</h4>
         Created: {{ps.key.created_at}} | Updated: {{ps.key.updated_at}}
@@ -19,7 +19,7 @@
         </button>
         <ul class="dropdown-menu " role="menu">
           <li ng-repeat="ac in actions">
-            <a href="#/edit/{{ps.key.id}}"> {{ac.action}} </a>
+            <a href="#/edit/{{ps.id}}"> {{ac.action}} </a>
           </li>
         </ul>
       </div>

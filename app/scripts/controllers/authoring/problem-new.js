@@ -8,6 +8,7 @@ angular.module('UTMQViewerApp')
       function (result) {
         $scope.problem = new Problem();
         $scope.courses = result;
+        $scope.problem.due = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
         if ($scope.courses.length > 0) {
           $scope.problem.course = $scope.courses[0].id;
         }

@@ -4,7 +4,7 @@
     <div class="cold-md-6"><h2>Welcome {{email}}!</h2></div>
     <div class="alert alert-info">
       <p>
-        To work on problem sets,  <strong>login with your university email address</strong>.
+        To work on problem sets, <strong>login with your university email address</strong>.
       </p>
     </div>
 
@@ -12,14 +12,17 @@
   </div>
   <div class="row">
     <ul ng-hide="email" class="list-group">
-      <li class="list-group-item"> <button ng-click="login()" class="btn btn-lg btn-success"><strong>Student Login</strong></button></li>
+      <li class="list-group-item">
+        <button ng-click="login()" class="btn btn-lg btn-success"><strong>Student Login</strong></button>
+      </li>
     </ul>
 
     <ul ng-show="email">
       <li class="list-group-item"><a href="#/problems" class="btn btn-lg btn-info">Your Problem Sets</a></li>
-      <li class="list-group-item"><a href="#/courses" class="btn btn-lg btn-info">Your Courses</a></li>
       <li class="list-group-item"><a href="#/results" class="btn btn-lg btn-info">Your Submissions</a></li>
-      <li class="list-group-item"> <button ng-click="logout()" class="btn btn-lg btn-success"><strong>Logout</strong></button></li>
+      <li class="list-group-item">
+        <button ng-click="logout()" class="btn btn-lg btn-success"><strong>Logout</strong></button>
+      </li>
     </ul>
   </div>
 

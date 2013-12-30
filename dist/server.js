@@ -38,6 +38,7 @@ server.on('uncaughtException', function(req, res, route, err) {
 
 server.use(restify.acceptParser(server.acceptable));
 server.use(restify.authorizationParser());
+server.use(restify.gzipResponse());
 server.use(restify.queryParser());
 server.use(restify.bodyParser());
 

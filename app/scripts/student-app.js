@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('UTMQViewerApp', [
     'ngRoute',
     'problemServices',
@@ -7,7 +5,6 @@ angular.module('UTMQViewerApp', [
     'submissionServices'
   ])
   .config(function ($routeProvider) {
-
 
     $routeProvider
       .when('/', {
@@ -18,9 +15,9 @@ angular.module('UTMQViewerApp', [
         templateUrl: 'views/student/problems.html',
         controller: 'StudentProblemsCtrl'
       })
-      .when('/courses', {
-        templateUrl: 'views/student/courses.html',
-        controller: 'StudentCoursesCtrl'
+      .when('/problems-by-course/:id', {
+        templateUrl: 'views/student/problems-by-course.html',
+        controller: 'StudentProblemsByCourseCtrl'
       })
       .when('/problem/:id', {
         templateUrl: 'views/student/problem.html',

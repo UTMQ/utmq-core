@@ -4,7 +4,8 @@ angular.module('UTMQViewerApp')
   .factory('persona', function ($rootScope, $http) {
     var resetUser = function () {
       localStorage.removeItem('personaEmail');
-      $rootScope.email = false;
+      $rootScope.error = "Login Failed";
+      $rootScope.email = null;
     };
 
     var login = function () {
@@ -30,9 +31,11 @@ angular.module('UTMQViewerApp')
                 url: '/login',
                 method: 'GET'
               }).success(function (data) {
-
                   localStorage.setItem('personaEmail', data.email);
                   $rootScope.email = data.email;
+                  if (data.role === 'instructor') {
+                    $rootScope.roleInstructor = true;
+                  }
                 }).error(function (data) {
 
                   resetUser();
@@ -44,7 +47,6 @@ angular.module('UTMQViewerApp')
               console.log('Login failed');
             }
           }).error(function (data) {
-
             resetUser();
             console.log('Login failed');
           });
@@ -58,8 +60,8 @@ angular.module('UTMQViewerApp')
       }).success(function (data) {
 
           if (data.status === 'okay') {
-            $rootScope.email = null;
             resetUser();
+            window.location = '/';
           } else {
 
             console.log('Logout failed because ' + data.reason);

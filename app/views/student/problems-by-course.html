@@ -1,0 +1,19 @@
+<div class='well'>
+  <h1>Problem Sets</h1>
+  <h3>Course Selected: {{details.course.name}}</h3>
+
+  <div ng-show="details.problems.length === 0" class="alert alert-info">
+    <h3>No Problem Sets found.</h3>
+  </div>
+
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="ps in details.problems" style="min-height: 80px;">
+      <h4>{{ps.key.name}} <a href='#/problem/{{ps.id}}' class='btn pull-right btn-warning'>Solve</a></h4>
+      <ul>
+        <li>Created: {{ps.key.created_at}}</li>
+        <li>Created: {{ps.key.updated_at}}</li>
+        <li>Due: {{ps.key.due}}</li>
+      </ul>
+    </li>
+  </ul>
+</div>

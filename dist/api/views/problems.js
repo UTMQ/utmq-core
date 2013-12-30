@@ -10,7 +10,11 @@ module.exports = function (db) {
       byCourse: {
         map: function (doc) {
           if (doc.course) {
-            emit(doc.name)
+            emit({
+              name: doc.name,
+              created_at: doc.created_at,
+              due: doc.due
+            })
           }
         }
       }

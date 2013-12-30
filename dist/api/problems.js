@@ -28,8 +28,7 @@ module.exports = function (dbConn) {
     put: function (req, res, next) {
       var update = req.body;
 
-      db.save(update, update.id, function (err, body) {
-        console.log("updated");
+      db.save(update.id, update._rev, update, function (err, body) {
         res.send(200, {body: body, error: err});
       });
 
