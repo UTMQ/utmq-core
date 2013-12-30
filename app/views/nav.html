@@ -6,7 +6,7 @@
     <h1 ng-show="modeStudent">UTMQ Student</h1>
   </div>
 
-  <div ng-show="modeAuthoring" class="nav-short btn-group pull-right" ng-cloak>
+  <div ng-show="modeAuthoring && roleInstructor" class="nav-short btn-group pull-right" ng-cloak>
     <a ng-show="email" href="#/" class="btn btn-default"><strong>Instructor :</strong></a>
     <a ng-show="email" href="#/problems" class="btn btn-default">Problem Sets</a>
     <a ng-show="email" href="#/courses" class="btn btn-default">Courses</a>

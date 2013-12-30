@@ -4,7 +4,6 @@ angular.module('UTMQViewerApp')
   .factory('persona', function ($rootScope, $http) {
     var resetUser = function () {
       localStorage.removeItem('personaEmail');
-      $rootScope.isAuthenticated = false;
       $rootScope.email = false;
     };
 
@@ -33,7 +32,6 @@ angular.module('UTMQViewerApp')
               }).success(function (data) {
 
                   localStorage.setItem('personaEmail', data.email);
-                  $rootScope.isAuthenticated = true;
                   $rootScope.email = data.email;
                 }).error(function (data) {
 
@@ -60,7 +58,6 @@ angular.module('UTMQViewerApp')
       }).success(function (data) {
 
           if (data.status === 'okay') {
-            $rootScope.isAuthenticated = false;
             $rootScope.email = null;
             resetUser();
           } else {
@@ -74,7 +71,7 @@ angular.module('UTMQViewerApp')
     };
 
     var protect = function () {
-      if (!$rootScope.isAuthenticated) {
+      if (!$rootScope.email) {
         window.location = '/';
       }
     };

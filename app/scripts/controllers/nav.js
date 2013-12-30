@@ -2,18 +2,17 @@
 
 angular.module('UTMQViewerApp')
   .controller('NavCtrl', function ($scope, $http, $rootScope, persona) {
-    console.log('App');
-    console.log($rootScope.email);
-    $rootScope.isAuthenticated = false;
+
     if (localStorage.getItem('personaEmail')) {
       if (!$rootScope.email) {
         $http({
           url: '/login',
           method: 'GET'
         }).success(function (data) {
-
-            $rootScope.isAuthenticated = true;
             $rootScope.email = data.email;
+            if (data.role === 'instructor') {
+              $rootScope.roleInstructor = true;
+            }
           }).error(function (data) {
 
             localStorage.removeItem('personaEmail')

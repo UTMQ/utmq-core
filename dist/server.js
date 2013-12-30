@@ -88,7 +88,7 @@ server.get('/submissions/:id', submissionsApi.get);
 server.del('/submissions/:id', submissionsApi.del);
 
 server.get('/login', function (req, res, next) {
-  res.send({ email: req.session.email });
+  res.send({ email: req.session.email, role: (req.session.role) ? req.session.role : 'student' });
 });
 
 server.post('/logout', function (req, res, next) {

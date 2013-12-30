@@ -65,6 +65,7 @@ module.exports = function (settings, dbConn) {
             // if no student with this name
             if (doc && doc._id === email) {
               req.session.email = email;
+              req.session.role = 'instructor';
               res.send(200, data);
             } else {
               res.send(403, {error: { body: 'Login Failed' } });
