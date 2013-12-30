@@ -63,16 +63,6 @@ module.exports = function (grunt) {
         dirs: ['<%= appConfig.dist %>']
       }
     },
-    imagemin: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '<%= appConfig.app %>/images',
-          src: '{,*/}*.{png,jpg,jpeg}',
-          dest: '<%= appConfig.dist %>/images'
-        }]
-      }
-    },
     htmlmin: {
       dist: {
         options: {
@@ -106,7 +96,7 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             'bower_components/**/*',
             'vendor_components/**/*',
-            'images/{,*/}*.{gif,webp}',
+            'images/{,*/}*.{gif,webp,png,jpg,jpeg}',
             'styles/fonts/*'
           ]
         }, {
@@ -126,7 +116,6 @@ module.exports = function (grunt) {
     },
     concurrent: {
       dist: [
-        'imagemin',
         'htmlmin'
       ]
     },

@@ -10,14 +10,15 @@
   "dependencies": {
     "restify": "2.6.0",
     "browserid-verify": "0.1.x",
-    "yaml-config": "~0.3.0",
+    "yaml-config": "0.3.0",
     "slug": "~0.4.0",
     "sanitizer": "~0.1.1",
     "validator": "~2.0.0",
     "client-sessions": "~0.4.1",
     "gap-system": "git://github.com/vladikoff/node-gap-system#684c44072fd572",
     "seedrandom": "~2.3.1",
-    "cradle": "~0.6.6"
+    "cradle": "~0.6.6",
+    "bunyan": "~0.22.1"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -27,7 +28,6 @@
     "grunt-contrib-cssmin": "~0.7.0",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-htmlmin": "~0.1.3",
-    "grunt-contrib-imagemin": "~0.4.0",
     "grunt-contrib-watch": "~0.5.2",
     "grunt-usemin": "~2.0.2",
     "grunt-concurrent": "~0.4.0",

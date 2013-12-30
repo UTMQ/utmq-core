@@ -4,7 +4,7 @@ module.exports = function (db) {
     views: {
       byName: {
         map: function (doc) {
-          emit(doc.name, doc)
+          emit(doc.name)
         }
       }
     }

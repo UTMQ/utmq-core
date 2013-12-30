@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('UTMQViewerApp')
-  .controller('AuthoringProblemsByCourseCtrl', ['$scope', 'Problem', function($scope, Problem) {
+  .controller('AuthoringProblemsByCourseCtrl', ['$scope', '$routeParams', 'Course', 'Problem', function ($scope, $routeParams, Course, Problem) {
+
     $scope.actions = [
       {action: 'Edit'},
       {action: 'Publish'},
@@ -10,13 +11,14 @@ angular.module('UTMQViewerApp')
       {action: 'Delete'}
     ];
 
-    Problem.query().$promise
+    Course.get({id: $routeParams.id}).$promise
       .then(
       function (result) {
-        $scope.items = result;
-      },
-      function (error) {
-        // TODO: error
-        console.log(error);
+        $scope.details = result;
+      })
+      .then(function () {
+
       });
+
+
   }]);

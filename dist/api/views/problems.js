@@ -6,6 +6,13 @@ module.exports = function (db) {
         map: function (doc) {
           emit(doc.name, doc)
         }
+      },
+      byCourse: {
+        map: function (doc) {
+          if (doc.course) {
+            emit(doc.name)
+          }
+        }
       }
     }
   });

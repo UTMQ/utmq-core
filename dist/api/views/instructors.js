@@ -4,7 +4,7 @@ module.exports = function (db) {
     views: {
       byEmail: {
         map: function (doc) {
-          emit(doc.email, doc)
+          emit({admin: doc.admin })
         }
       }
     }

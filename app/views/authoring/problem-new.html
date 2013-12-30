@@ -1,14 +1,17 @@
 <div class='well'>
+  <h1>New Problem Set</h1>
 
-  <div class='row'>
-    <div class='cold-md-6'><h1>New Problem Set</h1></div>
+
+  <div ng-show="courses.length === 0" class="alert alert-info">
+    <h3>No Courses found.</h3>
+    <a class="btn btn-success btn-lg" href="#/courses">Create a course</a>
   </div>
 
-  <hr/>
 
-
-  <div class='row multiadd createset'>
+  <div class='row multiadd createset' ng-show="courses.length > 0">
     <form id='course-form' class='form-inline' ng-submit='saveProblem()'>
+
+      <select class="form-control" ng-model="problem.course" ng-options="c.id as c.key for c in courses"></select>
       <div class='form-group'>
         <label for="newProblem">Name: </label>
         <input value='' id="newProblem" class='form-control' required autofocus ng-model='problem.name'/>

@@ -47,11 +47,11 @@ angular
         controller: 'AuthoringSubmissionsByCourseCtrl'
       })
       .when('/new', {
-        templateUrl: 'views/authoring/problemset-new.html',
-        controller: 'AuthoringProblemSetNewCtrl'
+        templateUrl: 'views/authoring/problem-new.html',
+        controller: 'AuthoringProblemNewCtrl'
       })
       .when('/edit/:id', {
-        templateUrl: 'views/authoring/problemset-edit.html',
+        templateUrl: 'views/authoring/problem-edit.html',
         controller: 'AuthoringProblemSetEditCtrl'
       })
       .otherwise({

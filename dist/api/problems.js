@@ -7,7 +7,6 @@ module.exports = function (dbConn) {
 
   return {
     post: function (req, res, next) {
-      console.log('POST');
       req.body.created_at = new Date();
       req.body.updated_at = new Date();
       req.body.questions = [];
@@ -36,8 +35,8 @@ module.exports = function (dbConn) {
 
     },
     get: function (req, res, next) {
-      console.log('GET');
       var id = req.params.id;
+
       db.get(id, function (err, body) {
         if (!err) {
           res.send(200, body);
@@ -49,9 +48,6 @@ module.exports = function (dbConn) {
     },
 
     getAll: function (req, res, next) {
-      console.log('GET ALL');
-      res.contentType = 'json';
-
       db.view('problems', 'by_name', function (err, body) {
         if (!err && body && body.rows.length !== 0) {
           res.send(200, { body: body});
@@ -62,7 +58,6 @@ module.exports = function (dbConn) {
     },
 
     del: function (req, res, next) {
-      console.log('DEL');
       console.log(req);
     }
   };

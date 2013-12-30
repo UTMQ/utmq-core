@@ -13,7 +13,8 @@
   <div class='row multiadd'>
     <form id='course-form' class='form-inline' ng-submit='addItem()'>
       <div class='form-group'>
-        <input type='email' class='form-control' required placeholder='Instructor email here...' ng-model='newInst' autofocus>
+        <input type='email' class='form-control' required placeholder='Instructor email here...' ng-model='newInst'
+               autofocus>
         <button class='btn btn-success'>Add Instructor</button>
       </div>
     </form>
@@ -22,8 +23,11 @@
     <section ng-show='items.length' ng-cloak>
       <ul id='course-list' class='list-group'>
         <li ng-repeat='item in items' class='list-group-item multiAdd-item'>
-          <span class='multiAdd-item-title'>{{item.key.name}}</span>
-          <button ng-really-message='Delete this instructor?' ng-really-click='removeItem(item)' class='btn pull-right btn-danger'>Delete Instructor</button>
+          <span class='multiAdd-item-title'>{{item.id}}</span>
+          <button ng-really-message='Delete this instructor?' ng-hide="item.key.admin" ng-really-click='removeItem(item)'
+                  class='btn pull-right btn-danger'>Delete Instructor
+          </button>
+          <button ng-show="item.key.admin" class='btn pull-right ' disabled>Administrator</button>
         </li>
       </ul>
     </section>

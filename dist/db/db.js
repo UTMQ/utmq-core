@@ -23,7 +23,7 @@ module.exports = function (settings) {
     var dbStudent = dbConn.database('utmq-core-instructors');
     dbStudent.get(admin, function (err, doc) {
       if (!doc) {
-        dbStudent.save(settings.admin, {});
+        dbStudent.save(settings.admin, { admin: true });
       }
     });
   }

@@ -34,9 +34,9 @@ angular.module('courseServices', ['ngResource'])
               return angular.fromJson(data).body.rows
             }
           },
-          get: {method: 'GET', params: {setId: '@id'}},
+          get: {method: 'GET', params: {id: '@id'}},
           save: {method: 'POST'},
-          update: {method: 'PUT', params: {setId: '@id'}},
+          update: {method: 'PUT', params: {id: '@id'}},
           delete: { method: 'DELETE', params: {} }
         });
     }]);

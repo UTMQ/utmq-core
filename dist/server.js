@@ -1,3 +1,6 @@
+var bunyan = require('bunyan');
+var log = bunyan.createLogger({name: "UTMQ"});
+
 var clientSessions = require('client-sessions');
 
 // Read app settings
@@ -24,7 +27,13 @@ var hostname = process.env.HOST || "http://localhost";
 // crete a restify server
 var server = restify.createServer({
   name: 'UTMQ',
-  version: '1.0.0'
+  version: '1.0.0',
+  log : bunyan.createLogger({name: "server"})
+});
+
+server.on('uncaughtException', function(req, res, route, err) {
+  log.error(err);
+  res.send(new restify.InternalError("Internal server error"));
 });
 
 server.use(restify.acceptParser(server.acceptable));
@@ -51,8 +60,8 @@ server.del('/problems/:id', problemsApi.del);
  Courses API
  */
 server.post('/courses', coursesApi.post);
-server.put('/courses', coursesApi.put);
 server.get('/courses', coursesApi.getAll);
+server.get('/courses/:id', coursesApi.get);
 server.del('/courses/:id', coursesApi.del);
 
 /*
@@ -65,9 +74,7 @@ server.post('/calculateForQuestion', calculateApi.calculateForQuestion);
  Instructors API
  */
 server.post('/instructors', instructorsApi.post);
-server.put('/instructors', instructorsApi.put);
 server.get('/instructors', instructorsApi.getAll);
-server.get('/instructors/:id', instructorsApi.get);
 server.del('/instructors/:id', instructorsApi.del);
 
 
