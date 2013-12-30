@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('UTMQViewerApp')
   .controller('StudentProblemCtrl', function($scope, $routeParams, Problem, Submission, $location) {
 
@@ -8,11 +6,16 @@ angular.module('UTMQViewerApp')
       function (result) {
         $scope.problem = result;
 
-        $scope.submission = new Submission({
+        $scope.sub = new Submission({
           problem: result._id,
           answers: [],
           problem_name: result.name
         });
+
+        $scope.problem.questions.forEach(function(q) {
+          $scope.sub.answers.push({value: 0});
+        });
+
       },
       function (error) {
         // TODO: error
@@ -20,9 +23,10 @@ angular.module('UTMQViewerApp')
       });
 
     $scope.submitAnswers = function () {
-      $scope.submission.$save(function(resp) {
-        if (resp.result.ok) {
-          $location.path( "/");
+      $scope.sub.$save(function(resp) {
+        if (resp.result.ok && resp.result.id) {
+          $location.path("/submission/" + resp.result.id);
+          //location.reload();
         } else {
           // TODO
           console.log('Database Error Occurred');

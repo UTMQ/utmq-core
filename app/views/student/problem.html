@@ -18,12 +18,13 @@
 
       <div class="form-group">
         <div class="span2">Your Answer:</div>
-        <input class="form-field" ng-model="q.field_answer"/>
+        <input class="form-field" ng-model="sub.answers[$index].value" required />
       </div>
 
       <hr/>
     </div>
     <button class="btn btn-success btn-lg" type="submit">Submit</button>
     {{ problem | json }}
+    {{ sub | json }}
   </div>
 </form>

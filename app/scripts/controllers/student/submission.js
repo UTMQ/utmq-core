@@ -10,6 +10,7 @@ angular.module('UTMQViewerApp')
       })
       .then(
       function (problem) {
+        console.log($scope.sub);
         console.log(problem);
 
         $scope.problem = problem

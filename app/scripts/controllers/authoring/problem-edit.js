@@ -20,6 +20,8 @@ angular.module('UTMQViewerApp')
     $scope.sel = {};
     $scope.calcResult = [];
 
+    $scope.question_points = _.range(11);
+
     Problem.get({id: $routeParams.id}).$promise
       .then(
       function (result) {
@@ -72,6 +74,7 @@ angular.module('UTMQViewerApp')
         field_title: "Question " + $scope.addField.lastAddedID,
         field_type: $scope.addField.new,
         field_value: "",
+        field_points: 1,
         field_required: true,
         field_hint: 'HINT',
         field_variables: []

@@ -8,7 +8,7 @@ module.exports = function (settings) {
 
   return {
     post: function (req, res, next) {
-      gap.calculate(req.body.om, function(err, resp) {
+      gap.calculate(req.body.om, function (err, resp) {
 
         if (!err) {
           res.send(200, {body: resp});
@@ -17,7 +17,7 @@ module.exports = function (settings) {
         }
       });
     },
-    calculateForQuestion: function(req, res, next) {
+    calculateForQuestion: function (req, res, next) {
       // TODO: block endpoint under session.
       var data = {
         problem: req.body.problem,
@@ -26,7 +26,7 @@ module.exports = function (settings) {
         session: req.session
       };
 
-      lib.getResultForQuestion(data, function(err, result) {
+      lib.getResultForQuestion(data, function (err, result) {
         if (!err) {
           res.send(200, {body: result});
         } else {

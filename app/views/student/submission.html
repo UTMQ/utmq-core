@@ -4,4 +4,23 @@
     <li>Answered Problem Set: {{sub.problem_name}}</li>
     <li>Created: {{sub.created_at}}</li>
   </ul>
+
+  <table class="table">
+    <tr>
+      <th>Question</th>
+      <th>Your Answer</th>
+      <th>Result</th>
+      <th>Points</th>
+    </tr>
+    <tr ng-repeat="s in sub.answers">
+      <td>
+        {{problem.questions[$index].field_title}}
+        <div>{{problem.questions[$index].field_question}}</div>
+      </td>
+      <td>{{s.value}}</td>
+      <td>{{s.result}}</td>
+      <td>{{s.points}}</td>
+    </tr>
+
+  </table>
 </div>

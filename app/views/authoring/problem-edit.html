@@ -62,13 +62,17 @@
 
         <div class="form-group">
           <label>Question Title:</label>
-
           <div class="span4"><input type="text" ng-model="field.field_title" value="{{field.field_title}}"></div>
           <label>Full Question:</label>
 
           <div class="span4">
             <textarea class="form-control" rows="3" ng-model="field.field_question"
                       value="{{field.field_question}}"></textarea>
+          </div>
+
+          <div class="span4">
+            <label>Points for correct answer:</label>
+            <select ng-model="field.field_points" ng-options="c for c in question_points"></select>
           </div>
         </div>
 

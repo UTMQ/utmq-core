@@ -18,7 +18,8 @@
     "gap-system": "git://github.com/vladikoff/node-gap-system#684c44072fd572",
     "seedrandom": "~2.3.1",
     "cradle": "~0.6.6",
-    "bunyan": "~0.22.1"
+    "bunyan": "~0.22.1",
+    "async": "~0.2.9"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

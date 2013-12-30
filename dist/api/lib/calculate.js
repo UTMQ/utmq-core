@@ -59,6 +59,7 @@ function generateOpenMathFromFormula(question, factors) {
 
 /**
  * Replace all occurrences of search in string with replacement
+ * @param string
  * @param search
  * @param replacement
  * @returns {string}
