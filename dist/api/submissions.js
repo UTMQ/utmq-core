@@ -42,6 +42,8 @@ module.exports = function (settings, dbConn) {
         // for questions in the problem
         // via https://github.com/caolan/async#mapseriesarr-iterator-callback
         async.mapSeries(problem.questions, questionSolverIterator, function (err, correctCalculations) {
+          sub.total_points = 0;
+
           correctCalculations.forEach(function(calc, idx) {
             var result = 'wrong';
             var answer = sub.answers[idx];
@@ -55,6 +57,7 @@ module.exports = function (settings, dbConn) {
               result = 'correct';
               // set number of points
               answer.points = parseInt(problem.questions[idx].field_points);
+              sub.total_points += answer.points;
             }
             // store the result of the comparison
             answer.result = result;

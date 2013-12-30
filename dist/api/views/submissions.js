@@ -7,7 +7,8 @@ module.exports = function (db) {
           if (doc.author) {
             emit(doc.author, {
               problem_name: doc.problem_name,
-              created_at: doc.created_at
+              created_at: doc.created_at,
+              total_points: doc.total_points
             })
           }
         }
@@ -17,7 +18,8 @@ module.exports = function (db) {
           if (doc.problem) {
             emit(doc.problem, {
               author: doc.author,
-              created_at: doc.created_at
+              created_at: doc.created_at,
+              total_points: doc.total_points
             })
           }
         }
