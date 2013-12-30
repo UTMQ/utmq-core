@@ -1,0 +1,27 @@
+<div class='well'>
+
+  <div class="row">
+    <div class="cold-md-6"><h1>Problem Sets</h1></div>
+  </div>
+
+  <div class='alert alert-info'>
+    <p>
+      <strong>Choose the course that the problem set belongs to.</strong>
+      If there are no courses in the list, create one first.
+    </p>
+  </div>
+
+  <div class='row multiadd'>
+    <section ng-show='items.length' ng-cloak>
+      <ul id='course-list' class='list-group'>
+        <li ng-repeat='item in items' class='list-group-item multiAdd-item'>
+          <span class='multiAdd-item-title'>{{item.key}}</span>
+          <a href="#/problems-by-course/{{item.id}}" class='btn pull-right btn-info'>View Problem Sets</a>
+        </li>
+      </ul>
+    </section>
+  </div>
+
+
+
+</div>

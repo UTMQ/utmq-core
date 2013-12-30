@@ -3,8 +3,8 @@ var xss = require('sanitizer');
 
 var setupViews = require('./views/instructors');
 
-module.exports = function (nano) {
-  var db = nano.use('utmq-core-instructors');
+module.exports = function (dbConn) {
+  var db = dbConn.database('utmq-core-instructors');
 
   setupViews(db);
 
@@ -17,7 +17,7 @@ module.exports = function (nano) {
         created_at: new Date()
       };
 
-      db.insert(doc, function (err, body) {
+      db.save(doc, function (err, body) {
         res.contentType = 'json';
         if (!err) {
           res.send({
@@ -38,25 +38,15 @@ module.exports = function (nano) {
     },
     get: function (req, res, next) {
       console.log('GET');
-      db.list(function (err, body) {
-        if (!err) {
-          body.rows.forEach(function (doc) {
-            res.send(body);
-            console.log(doc);
-          });
-        } else {
-          console.log(err);
-        }
-      });
     },
 
     getAll: function (req, res, next) {
       console.log('GET ALL');
       res.contentType = 'json';
 
-      db.view('instructors', 'by_name', function (err, body) {
-        if (!err && body && body.rows.length !== 0) {
-          res.send(200, { body: body });
+      db.view('instructors/all', function (err, res) {
+        if (!err && res && res.length !== 0) {
+          res.send(200, { body: { rows: res } });
         } else if (!err) {
           res.send(200, { body: { rows: [] }});
         } else {

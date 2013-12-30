@@ -4,8 +4,8 @@ var xss = require('sanitizer');
 
 var setupViews = require('./views/courses');
 
-module.exports = function (nano) {
-  var db = nano.use('utmq-core-courses');
+module.exports = function (dbConn) {
+  var db = dbConn.database('utmq-core-courses');
 
   setupViews(db);
 
@@ -20,7 +20,7 @@ module.exports = function (nano) {
         slug: slug(name).toLowerCase()
       };
       if (name.length > 0) {
-        db.insert(doc, function (err, body) {
+        db.save(doc, function (err, body) {
           res.contentType = 'json';
           if (!err) {
             res.send({
@@ -43,27 +43,10 @@ module.exports = function (nano) {
       console.log(req);
 
     },
-    get: function (req, res, next) {
-      console.log('GET');
-      db.list(function (err, body) {
-        if (!err) {
-          body.rows.forEach(function (doc) {
-            res.send(body);
-            console.log(doc);
-          });
-        } else {
-          console.log(err);
-        }
-      });
-    },
-
     getAll: function (req, res, next) {
-      console.log('GET ALL');
-      res.contentType = 'json';
-
-      db.view('courses', 'by_name', function (err, body) {
-        if (!err && body && body.rows.length !== 0) {
-          res.send(200, { body: body });
+      db.view('courses/byName', function (err, body) {
+        if (!err && body && body.length !== 0) {
+          res.send(200, { body: { rows: body } });
         } else if(!err) {
           res.send(200, { error: err, body: { rows: [] }});
         } else {
@@ -73,17 +56,10 @@ module.exports = function (nano) {
     },
 
     del: function (req, res, next) {
-      console.log('DEL');
-
-
       var id = req.params.id;
-      console.log(id);
       db.get(id, function (err, body) {
-        console.log(err);
-        console.log(body);
         if (!err) {
-
-          db.destroy(body._id, body._rev, function (err) {
+          db.remove(body._id, body._rev, function (err) {
             if (!err) {
               res.send(200);
             } else {

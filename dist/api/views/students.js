@@ -1,12 +1,13 @@
 module.exports = function (db) {
 
-  db.save('_design/courses', {
+  db.save('_design/students', {
     views: {
-      byName: {
+      byEmail: {
         map: function (doc) {
-          emit(doc.name, doc)
+          emit(doc.email, doc)
         }
       }
     }
   });
+
 };

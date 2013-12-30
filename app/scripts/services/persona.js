@@ -15,8 +15,13 @@ angular.module('UTMQViewerApp')
           return;
         }
 
+        var authUrl = '/auth';
+        if ($rootScope.modeAuthoring) {
+          authUrl = '/authInstructor';
+        }
+
         $http({
-          url: '/auth',
+          url: authUrl,
           method: 'POST',
           data: { assertion: assertion }
         }).success(function (data) {

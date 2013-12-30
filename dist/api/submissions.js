@@ -3,8 +3,8 @@ var xss = require('sanitizer');
 
 var setupViews = require('./views/submissions');
 
-module.exports = function (nano) {
-  var db = nano.use('utmq-core-submissions');
+module.exports = function (dbConn) {
+  var db = dbConn.database('utmq-core-submissions');
 
   setupViews(db);
 

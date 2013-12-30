@@ -18,9 +18,13 @@ angular
         templateUrl: 'views/authoring/intro.html',
         controller: 'AuthoringIntroCtrl'
       })
-      .when('/manage', {
-        templateUrl: 'views/authoring/problemset-list.html',
-        controller: 'AuthoringProblemSetListCtrl'
+      .when('/problems', {
+        templateUrl: 'views/authoring/problems.html',
+        controller: 'AuthoringProblemsCtrl'
+      })
+      .when('/problems-by-course/:id', {
+        templateUrl: 'views/authoring/problems-by-course.html',
+        controller: 'AuthoringProblemsByCourseCtrl'
       })
       .when('/instructors', {
         templateUrl: 'views/authoring/instructors.html',

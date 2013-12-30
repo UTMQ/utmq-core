@@ -1,7 +1,7 @@
 var setupViews = require('./views/problems');
 
-module.exports = function (nano) {
-  var db = nano.use('utmq-core-problems');
+module.exports = function (dbConn) {
+  var db = dbConn.database('utmq-core-problems');
 
   setupViews(db);
 
@@ -11,7 +11,7 @@ module.exports = function (nano) {
       req.body.created_at = new Date();
       req.body.updated_at = new Date();
       req.body.questions = [];
-      db.insert(req.body, function (err, body) {
+      db.save(req.body, function (err, body) {
         res.contentType = 'json';
         if (!err) {
           res.send({
@@ -29,7 +29,7 @@ module.exports = function (nano) {
     put: function (req, res, next) {
       var update = req.body;
 
-      db.insert(update, update.id, function (err, body) {
+      db.save(update, update.id, function (err, body) {
         console.log("updated");
         res.send(200, {body: body, error: err});
       });

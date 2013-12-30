@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "restify": "2.6.0",
-    "nano": "~4.2.1",
     "browserid-verify": "0.1.x",
     "yaml-config": "~0.3.0",
     "slug": "~0.4.0",
@@ -17,7 +16,8 @@
     "validator": "~2.0.0",
     "client-sessions": "~0.4.1",
     "gap-system": "git://github.com/vladikoff/node-gap-system#684c44072fd572",
-    "seedrandom": "~2.3.1"
+    "seedrandom": "~2.3.1",
+    "cradle": "~0.6.6"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

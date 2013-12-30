@@ -23,7 +23,7 @@
     <section ng-show='courseList.length' ng-cloak>
       <ul id='course-list' class='list-group'>
         <li ng-repeat='course in courseList' class='list-group-item multiAdd-item'>
-          <span class='multiAdd-item-title'>{{course.key.name}}</span>
+          <span class='multiAdd-item-title'>{{course.key}}</span>
           <button ng-really-message="Delete this course?" ng-really-click="removeCourse(course)" class='btn pull-right btn-danger'>Delete Course</button>
 
         </li>

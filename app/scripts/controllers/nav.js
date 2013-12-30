@@ -33,8 +33,10 @@ angular.module('UTMQViewerApp')
 
     if (location.pathname === "/authoring.html") {
       $scope.modeAuthoring = true;
+      $rootScope.modeAuthoring = true;
     } else {
       $scope.modeStudent = true;
+      $rootScope.modeStudent = true;
     }
 
     $scope.login = function () {

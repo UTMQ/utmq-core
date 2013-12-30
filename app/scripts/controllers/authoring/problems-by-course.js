@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('UTMQViewerApp')
-  .controller('AuthoringProblemSetListCtrl', ['$scope', 'Problem', function($scope, Problem) {
+  .controller('AuthoringProblemsByCourseCtrl', ['$scope', 'Problem', function($scope, Problem) {
     $scope.actions = [
       {action: 'Edit'},
       {action: 'Publish'},

@@ -7,21 +7,21 @@ var settings = config.readConfig('config.yaml');
 var restify = require('restify');
 
 // DB Connect
-var db = require('./db/db.js');
+var dbConn = require('./db/db.js')(settings);
 
 // Problem Set API Config
-var problemsApi = require('./api/problems')(db);
-var instructorsApi = require('./api/instructors')(db);
-var coursesApi = require('./api/courses')(db);
-var submissionsApi = require('./api/submissions')(db);
+var problemsApi = require('./api/problems')(dbConn);
+var instructorsApi = require('./api/instructors')(dbConn);
+var coursesApi = require('./api/courses')(dbConn);
+var submissionsApi = require('./api/submissions')(dbConn);
 var calculateApi = require('./api/calculate')(settings);
-var authApi = require('./api/auth')(settings);
-// var studentsApi = require('./api/students')(db);
+var studentsApi = require('./api/students')(dbConn);
+var authApi = require('./api/auth')(settings, dbConn);
 
 var port = process.env.PORT || settings.appPort;
 var hostname = process.env.HOST || "http://localhost";
 
-
+// crete a restify server
 var server = restify.createServer({
   name: 'UTMQ',
   version: '1.0.0'
@@ -53,7 +53,6 @@ server.del('/problems/:id', problemsApi.del);
 server.post('/courses', coursesApi.post);
 server.put('/courses', coursesApi.put);
 server.get('/courses', coursesApi.getAll);
-server.get('/courses/:id', coursesApi.get);
 server.del('/courses/:id', coursesApi.del);
 
 /*
@@ -90,7 +89,8 @@ server.post('/logout', function (req, res, next) {
   res.send(200, { status: "okay" });
 });
 
-server.post('/auth', authApi.post);
+server.post('/auth', authApi.authStudent);
+server.post('/authInstructor', authApi.authInstructor);
 
 server.get(/\/?.*/, restify.serveStatic({
   directory: "../app",
