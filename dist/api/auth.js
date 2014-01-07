@@ -24,8 +24,16 @@ module.exports = function (settings, dbConn) {
         if (email && data.status === 'okay') {
           dbStudent.get(email, function (err, doc) {
 
-            // if no student with this name
-            if (!doc) {
+            if (
+              // if no student with this name
+              (!doc) &&
+              // if student email is accepted
+              (settings.allowedEmails &&
+                // check if in allowed emails
+                (settings.allowedEmails.indexOf('@' + email.split('@')[1]) >= 0) ||
+                // or check if all emails allowed
+                (settings.allowedEmails.indexOf('@*') >= 0))
+            ) {
               dbStudent.save(email, { }, function (err, body) {
                 req.session.email = email;
                 res.send(200, data);
@@ -38,7 +46,6 @@ module.exports = function (settings, dbConn) {
 
             // if student exists
             } else {
-              console.log(doc);
               req.session.email = email;
               res.send(200, data);
             }

@@ -9,6 +9,7 @@ angular.module('UTMQViewerApp')
         method: 'GET'
       }).success(function (data) {
           $rootScope.email = data.email;
+          $rootScope.error = null;
           if (data.role === 'instructor') {
             $rootScope.roleInstructor = true;
           }
