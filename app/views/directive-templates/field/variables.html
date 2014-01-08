@@ -1,6 +1,11 @@
 <div>
   <button type="button" class="btn btn-default btn-sm" ng-click="checkCalculation($index, field)">Check Formula</button>
 
+  <div>
+    <label ng-show="calcResult[$index]">Formula Result based on given variable configuration:</label>
+    <textarea disabled ng-show="calcResult[$index].length > 0">{{calcResult[$index]}}</textarea>
+  </div>
+
   <label>Configure Formula Variables:</label>
 
   <div class="alert alert-info">NOTE: Use <strong>"q1variable"</strong> inside of the formula. Use
@@ -67,8 +72,4 @@
   </table>
   <button class="btn btn-default btn-sm" ng-click="addVar(field)">Add a variable</button>
 
-  <div>
-    <label ng-show="calcResult[$index]">Formula Result based on given variable configuration:</label>
-    <textarea disabled ng-show="calcResult[$index]">{{calcResult[$index]}}</textarea>
-  </div>
 </div>

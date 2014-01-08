@@ -8,7 +8,11 @@ module.exports = function (settings) {
 
   return {
     post: function (req, res, next) {
-      gap.calculate(req.body.om, function (err, resp) {
+      var input = {
+        om: req.body.om
+      };
+
+      gap.calculate(input, function (err, resp) {
 
         if (!err) {
           res.send(200, {body: resp});

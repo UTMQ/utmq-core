@@ -13,13 +13,28 @@ function getResultForQuestion(data, cb) {
   // factors that will influence the randomization
   var factors = [ data.session.email ];
   var generatedFormula = generateOpenMathFromFormula(question, factors);
+  var input = {
+    om: generatedFormula,
+    digits: question.field_digits
+  };
 
-  data.gap.calculate(generatedFormula, function(err, resp) {
+  data.gap.calculate(input, function(err, resp) {
+    console.log(input);
     console.log('generatedFormula');
     console.log(generatedFormula);
     console.log(resp);
     if (!err) {
-      cb(null, resp);
+      try {
+      var value = resp;
+      // adjust the value to have proper decimal places, because GAP returns 3.00 as 3.
+      if (resp.indexOf('.') === (resp.length - 1)) {
+        value = resp + Array(question.field_digits + 1).join("0")
+      }
+      } catch (e) {
+        console.log(e);
+      }
+
+      cb(null, value);
     } else {
       cb(err, null);
     }
@@ -70,3 +85,5 @@ function replaceAll(string, search, replacement) {
 
 
 exports.getResultForQuestion = getResultForQuestion;
+exports.generateOpenMathFromFormula = generateOpenMathFromFormula;
+exports.replaceAll = replaceAll;

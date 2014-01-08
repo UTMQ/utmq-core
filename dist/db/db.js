@@ -2,7 +2,9 @@ module.exports = function (settings) {
   var server = process.env.DB || "http://127.0.0.1:5984";
   console.log('Trying to connect to a database at ' + server);
   var cradle = require('cradle');
-  var dbConn = new(cradle.Connection)(server);
+  var dbConn = new(cradle.Connection)(server, {
+    cache: false
+  });
 
 
   /**

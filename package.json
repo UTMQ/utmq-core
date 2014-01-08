@@ -15,7 +15,7 @@
     "sanitizer": "~0.1.1",
     "validator": "~2.0.0",
     "client-sessions": "~0.4.1",
-    "gap-system": "git://github.com/vladikoff/node-gap-system#684c44072fd572",
+    "gap-system": "git://github.com/UTMQ/node-gap-system#6cb13658e",
     "seedrandom": "~2.3.1",
     "cradle": "~0.6.6",
     "bunyan": "~0.22.1",

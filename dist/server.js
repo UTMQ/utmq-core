@@ -41,7 +41,7 @@ server.on('uncaughtException', function (req, res, route, err) {
 // restify configuration
 server.use(restify.acceptParser(server.acceptable));
 server.use(restify.authorizationParser());
-server.use(restify.gzipResponse());
+//server.use(restify.gzipResponse());
 server.use(restify.queryParser());
 server.use(restify.bodyParser());
 
@@ -56,6 +56,7 @@ server.use(clientSessions({
 server.post('/problems', problemsApi.post);
 server.put('/problems', problemsApi.put);
 server.get('/problems/:id', problemsApi.get);
+//server.get('/problemsStudent/:id', problemsApi.getStudent);
 server.del('/problems/:id', problemsApi.del);
 
 /*

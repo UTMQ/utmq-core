@@ -74,6 +74,10 @@
             <label>Points for correct answer:</label>
             <select ng-model="field.field_points" ng-options="c for c in question_points"></select>
           </div>
+          <div class="span4">
+            <label>Answer Precision: (i.e with 1: 0.75 -> 0.8, with 2: 0.000433123 -> 0.00043)</label>
+            <select ng-model="field.field_digits" ng-options="c for c in question_digits"></select>
+          </div>
         </div>
 
         <div class="form-group">

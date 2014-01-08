@@ -1,7 +1,7 @@
 angular.module('UTMQViewerApp')
   .controller('StudentProblemCtrl', function($scope, $routeParams, Problem, Submission, $location) {
 
-    Problem.get({id: $routeParams.id}).$promise
+    Problem.get({id: $routeParams.id, role: 'student'}).$promise
       .then(
       function (result) {
         $scope.problem = result;
